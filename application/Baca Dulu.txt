@@ -1,0 +1,3 @@
+1. Extract folder "controllers, models, views" lalu hapus folder "controllers, models, views" yang ada di folder application, lalu ganti dengan yang di extract tadi
+2. Drop atau hapus database lama 'db_sibumil' lalu buat lagi dengan nama 'db_sibumil' kemudian import file db_sibumil yang baru saya sertakan
+3. extract folder 'css' dan 'js', lalu copy-paste ke dalam folder 'assets'. jika ada peringatan untuk replace, di replace aja

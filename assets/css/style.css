@@ -1,0 +1,171 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 8, 2016, 11:15:20 AM
+    Author     : Ervan
+*/
+body{
+    background-color: #ee6e73;
+}
+
+footer.page-footer{
+    margin-top: 0px !important;
+    padding-top: 20px;
+    background-color: #ee6e73;
+    box-shadow: 0 -3px 6px rgba(0,0,0,0.16), 0 -3px 6px rgba(0,0,0,0.23);
+}
+
+header, main, footer{
+    padding-left: 300px;
+}
+
+.logo{
+    text-align: center;    
+    margin: 10px 56px 10px 56px;
+}
+
+.divider-line{
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    line-height: 40px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.divider-menu{
+    border-bottom: 1px solid #9e9e9e;
+    border-top: 1px solid #9e9e9e;
+    background-color: #bdbdbd;
+    font-weight: bold;
+    width: 100%;
+    line-height: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    text-align: center;
+}
+li.bold > a{
+    font-weight: bold;
+}
+.side-nav{
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+    width: 300px !important;
+}
+.no-padding{
+    padding: 0 !important;
+}
+
+*::-webkit-scrollbar{
+    width:6px!important
+}
+*::-webkit-scrollbar-thumb{
+    background-color:rgba(0,0,0,.2)
+}
+*::-webkit-scrollbar-track{
+    background:rgba(255,255,255,.08)
+}
+.app-wrapper-main::-webkit-scrollbar-track{
+    background-color:#dfdfdf
+}
+
+li.no-padding>ul.collapsible>li.active>div.collapsible-body>ul>li>a{
+    color: #444 !important;
+}
+
+#index-header{
+    background-color: #ee6e73;    
+    background-image: url('../img/puskesmas2.jpg') !important;
+    background-repeat: no-repeat;
+    background-position: center; 
+    color: #fff;
+    padding-bottom: 20px;
+    padding-top: 20px !important;
+    text-align: center;
+    height: 250px !important;
+}
+
+#index-header .header{
+    color: #fff;
+}
+
+#index-header h1{
+    margin-top: 10px;
+}
+
+.header{
+    font-weight: 300;
+}
+h1, h2, h3, h4, h5, h6{
+    -webkit-font-smoothing : antialiased;
+}
+
+h1{
+    font-size: 3rem;
+}
+h4{
+    font-size: 2rem;
+}
+
+.materialboxed{
+    width: 100% !important;
+}
+
+.card-1 {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.2s ease-in-out;
+}
+
+.card-1:hover {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card-2 {
+  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+
+.card-3 {
+  box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+}
+
+.card-4 {
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.card-5 {
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+
+main{
+    background-color: #2196f3 !important;
+}
+
+.login-head{
+    padding:14px 0;
+    height:64px;
+    line-height:36px;
+    background-color:#5c5757;
+    color:#e6e6e6;
+    font-size:.9rem;
+}
+
+.modal-footer{
+    padding-top: 16px !important;
+}
+
+li.menu-cpanel{
+    border-bottom: 1px solid #ccc !important;
+    margin-left: 10px !important;
+}
+
+li.menu-cpanel:hover{
+    background-color: #e0e0e0 !important;
+    transition: background-color 1s;
+}
+
+.fr-toolbar{
+    top: 5px !important;
+}
