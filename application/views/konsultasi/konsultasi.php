@@ -38,7 +38,9 @@
     <div class="modal-content">
         <h4>Diagnosis</h4>
         <p id="n_diagnosis"></p>
-        <h4>Tips</h4>
+        <h4>Tips untuk Pakar</h4>
+        <p id="n_tips_pakar"></p>
+        <h4>Tips untuk Pasien</h4>
         <p id="n_tips"></p>
     </div>
     <div class="modal-footer">
@@ -170,18 +172,22 @@
                 data: {data: data, y: now.getFullYear(), m: now.getMonth(), d: now.getDate()},
                 success: function (data) {
                     $("#n_diagnosis").empty();
-                    if(data.nilai <= 0.1){
-                        diagnosa = "Anemia Ringan";
+                    if(data.status == 'ringan'){
+                        diagnosa = "Menderita Anemia Ringan";
                     }
-                    else if(data.nilai > 0.1 && data.nilai < 0.2){
-                        diagnosa = "Anemia Sedang";
+                    else if(data.status == 'sedang'){
+                        diagnosa = "Menderita Anemia Sedang";
                     }
-                    else if(data.nilai >= 0.2){
-                        diagnosa = "Anemia Berat";
+                    else if(data.status == 'berat'){
+                        diagnosa = "Menderita Anemia Berat";
+                    }
+                    else if(data.status == 'tidak'){
+                        diagnosa = "Tidak Menderita Anemia";
                     }
 
-                    $("#n_diagnosis").text("Menurut Hasil Diagnosa Anda Menderita: "+diagnosa);
-                    $("#n_tips").text(data.tips);
+                    $("#n_diagnosis").text("Menurut Hasil Diagnosa Anda : "+diagnosa);
+                    $("#n_tips").text(data.isi_pasien);
+                    $("#n_tips_pakar").text(data.isi_pakar);
                     $("#modal-nilai").openModal();
                 }
             });

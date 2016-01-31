@@ -6,6 +6,7 @@ class Konsultasi extends CI_Controller{
     public function __construct(){
         parent::__construct();
         $this->load->model('konsultasi_model');
+        $this->load->model('main_model');
         //Codeigniter : Write Less Do More
     }
 
@@ -31,6 +32,18 @@ class Konsultasi extends CI_Controller{
         }
         $hasil_mb = array();
         $hasil_md = array();
+        $max_mb = array(
+            'tidak' => 0,
+            'ringan' => 0,
+            'sedang' => 0,
+            'berat' => 0,
+        );
+        $max_md = array(
+            'tidak' => 0,
+            'ringan' => 0,
+            'sedang' => 0,
+            'berat' => 0,
+        );
         foreach ($data_yes as $key => $data) {
             if ($key == count($data_yes)-1) {
                 continue;
@@ -45,23 +58,68 @@ class Konsultasi extends CI_Controller{
             $hipotesis_sedang_mb = ($key == 0) ? $data_yes[$key+1]['sedang']['mb'] : $hasil_mb['sedang'];
             $hasil_mb['sedang'] = $data_yes[$key]['sedang']['mb'] + $data_yes[$key+1]['sedang']['mb'] * (1 - $hipotesis_sedang_mb);
 
-            $hipotesis_berat = ($key == 0) ? $data_yes[$key+1]['berat']['mb'] : $hasil_mb['berat'];
+            $hipotesis_berat_mb = ($key == 0) ? $data_yes[$key+1]['berat']['mb'] : $hasil_mb['berat'];
             $hasil_mb['berat'] = $data_yes[$key]['berat']['mb'] + $data_yes[$key+1]['berat']['mb'] * (1 - $hipotesis_berat_mb);
 
-            $hipotesis_tidak = ($key == 0) ? $data_yes[$key+1]['tidak']['md'] : $hasil_md['tidak'];
+            $hipotesis_tidak_md = ($key == 0) ? $data_yes[$key+1]['tidak']['md'] : $hasil_md['tidak'];
             $hasil_md['tidak'] = $data_yes[$key]['tidak']['md'] + $data_yes[$key+1]['tidak']['md'] * (1 - $hipotesis_tidak_md);
 
-            $hipotesis_ringan = ($key == 0) ? $data_yes[$key+1]['ringan']['md'] : $hasil_md['ringan'];
+            $hipotesis_ringan_md = ($key == 0) ? $data_yes[$key+1]['ringan']['md'] : $hasil_md['ringan'];
             $hasil_md['ringan'] = $data_yes[$key]['ringan']['md'] + $data_yes[$key+1]['ringan']['md'] * (1 - $hipotesis_ringan_md);
 
-            $hipotesis_sedang = ($key == 0) ? $data_yes[$key+1]['sedang']['md'] : $hasil_md['sedang'];
+            $hipotesis_sedang_md = ($key == 0) ? $data_yes[$key+1]['sedang']['md'] : $hasil_md['sedang'];
             $hasil_md['sedang'] = $data_yes[$key]['sedang']['md'] + $data_yes[$key+1]['sedang']['md'] * (1 - $hipotesis_sedang_md);
 
-            $hipotesis_berat = ($key == 0) ? $data_yes[$key+1]['berat']['md'] : $hasil_md['berat'];
+            $hipotesis_berat_md = ($key == 0) ? $data_yes[$key+1]['berat']['md'] : $hasil_md['berat'];
             $hasil_md['berat'] = $data_yes[$key]['berat']['md'] + $data_yes[$key+1]['berat']['md'] * (1 - $hipotesis_berat_md);
+
+            if ($hasil_mb['tidak'] >= $max_mb['tidak']) {
+                $max_mb['tidak'] = $hasil_mb['tidak'];
+            }
+
+            if ($hasil_mb['ringan'] >= $max_mb['ringan']) {
+                $max_mb['ringan'] = $hasil_mb['ringan'];
+            }
+
+            if ($hasil_mb['sedang'] >= $max_mb['sedang']) {
+                $max_mb['sedang'] = $hasil_mb['sedang'];
+            }
+
+            if ($hasil_mb['berat'] >= $max_mb['berat']) {
+                $max_mb['berat'] = $hasil_mb['berat'];
+            }
+
+            if ($hasil_md['tidak'] >= $max_md['tidak']) {
+                $max_md['tidak'] = $hasil_md['tidak'];
+            }
+
+            if ($hasil_md['ringan'] >= $max_md['ringan']) {
+                $max_md['ringan'] = $hasil_md['ringan'];
+            }
+
+            if ($hasil_md['sedang'] >= $max_md['sedang']) {
+                $max_md['sedang'] = $hasil_md['sedang'];
+            }
+
+            if ($hasil_md['berat'] >= $max_md['berat']) {
+                $max_md['berat'] = $hasil_md['berat'];
+            }
+
+
         }
 
-        print_r($data_reguler);
+        $cf = array();
+        $cf['tidak'] = $max_mb['tidak'] - $max_md['tidak'];
+        $cf['ringan'] = $max_mb['ringan'] - $max_md['ringan'];
+        $cf['sedang'] = $max_mb['sedang'] - $max_md['sedang'];
+        $cf['berat'] = $max_mb['berat'] - $max_md['berat'];
+
+        $nilai_cf = max($cf);
+        $key = array_search($nilai_cf, $cf);
+
+        $tips = $this->main_model->get_konsul_tips($key);
+
+        echo json_encode(array('status' => $key, 'isi_pasien' => $tips['isi_pasien'], 'isi_pakar' => $tips['isi_pakar']));
 
     }
 
