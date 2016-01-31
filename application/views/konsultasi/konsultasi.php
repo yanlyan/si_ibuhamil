@@ -1,26 +1,31 @@
-<div class="card-panel card-2">    
+<div class="card-panel card-2">
     <form action="#" id="f_konsul">
         <?php
         $no = 1;
-        foreach ($konsul as $i) {
+        foreach ($konsul_reguler as $i) {
             ?>
             <div data-id="view" data-no="<?php echo $i['no_konsul']; ?>">
                 <p><?php echo $i['no_konsul'] . ". " . $i['nama_konsul']; ?></p>
                 <p>
-                    <input data-no="<?php echo $no; ?>" class="with-gap" name="<?php echo $i['id_konsul']; ?>" type="radio" id="<?php echo $i['id_konsul']; ?>1" value="<?php echo $i['mbr'] ?>, <?php echo $i['mdr'] ?>" required>
-                    <label for="<?php echo $i['id_konsul']; ?>1">Kadang</label>
+                    <input data-no="<?php echo $no; ?>" class="with-gap" name="<?php echo $i['id_konsul']; ?>" type="radio" id="<?php echo $i['id_konsul']; ?>1" value="1" required>
+                    <label for="<?php echo $i['id_konsul']; ?>1">Ya</label>
                 </p>
                 <p>
-                    <input data-no="<?php echo $no; ?>" class="with-gap" name="<?php echo $i['id_konsul']; ?>" type="radio" id="<?php echo $i['id_konsul']; ?>2" value="<?php echo $i['mbt'] ?>, <?php echo $i['mdt'] ?>" required>
-                    <label for="<?php echo $i['id_konsul']; ?>2">Sering</label>
+                    <input data-no="<?php echo $no; ?>" class="with-gap" name="<?php echo $i['id_konsul']; ?>" type="radio" id="<?php echo $i['id_konsul']; ?>2" value="0" required>
+                    <label for="<?php echo $i['id_konsul']; ?>2">Tidak</label>
                 </p>
+            </div>
+        <?php $no++; } ?>
+        <div data-id="view" data-no="<?php echo $no; ?>">
+            <p><?php echo $no; ?>. Berapa kadar HB pasien ?</p>
+            <?php foreach ($konsul_khusus as $key => $khusus): ?>
                 <p>
-                    <input data-no="<?php echo $no; ?>" class="with-gap" name="<?php echo $i['id_konsul']; ?>" type="radio" id="<?php echo $i['id_konsul']; ?>3" value="<?php echo $i['mbb'] ?>, <?php echo $i['mdb'] ?>" required>
-                    <label for="<?php echo $i['id_konsul']; ?>3">Sangat Sering</label>
+                    <input data-no="<?php echo $no; ?>" class="with-gap" name="konsul_khusus" type="radio" value="<?php echo $khusus['id_konsul']; ?>" required id="<?php echo $khusus['id_konsul']; ?>">
+                    <label for="<?php echo $khusus['id_konsul']; ?>"><?php echo $khusus['nama_konsul'] ?></label>
                 </p>
-            </div>     
-        <?php $no++; } ?>        
-    </form>   
+            <?php endforeach; ?>
+        </div>
+    </form>
     <ul class="pagination" id="btn_group_view" style="margin-top: 15px !important;">
     </ul>
     <div style=" float: right; bottom: 45px; right: 24px;">
@@ -154,12 +159,12 @@
         var diagnosa;
         var tips;
 
-        if($("input.with-gap[type = radio]:checked").length < 10){
+        if($("input.with-gap[type = radio]:checked").length < <?php echo (count($konsul_reguler)+1); ?>){
             Materialize.toast('Jawab Semua Pertanyaan..!!!', 2500);
         }
         else{
             $.ajax({
-                url: "http://localhost/si_ibuhamil/index.php/main/count_konsul",
+                url: "http://localhost/si_ibuhamil/index.php/Konsultasi/hitung",
                 type: "POST",
                 dataType: 'json',
                 data: {data: data, y: now.getFullYear(), m: now.getMonth(), d: now.getDate()},
@@ -174,10 +179,10 @@
                     else if(data.nilai >= 0.2){
                         diagnosa = "Anemia Berat";
                     }
-                    
+
                     $("#n_diagnosis").text("Menurut Hasil Diagnosa Anda Menderita: "+diagnosa);
                     $("#n_tips").text(data.tips);
-                    $("#modal-nilai").openModal();                
+                    $("#modal-nilai").openModal();
                 }
             });
         }

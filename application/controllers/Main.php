@@ -92,7 +92,9 @@ class Main extends CI_Controller {
         }
 
         $this->load->model('konsultasi_model');
-        $this->data['konsul'] = $this->konsultasi_model->getAllKonsul();
+        $this->data['konsul_reguler'] = $this->konsultasi_model->getKonsulByType('reguler');
+        $this->data['konsul_khusus'] = $this->konsultasi_model->getKonsulByType('khusus');
+
         $this->data['content'] = "konsultasi/konsultasi";
         $this->load->view('main', $this->data);
     }
@@ -122,7 +124,7 @@ class Main extends CI_Controller {
             'y' => $y,
             'm' => $m,
             'd' => $dy
-        );        
+        );
         $this->load->model('main_model');
         $this->main_model->insert_hasil_konsul($input);
 
@@ -155,7 +157,7 @@ class Main extends CI_Controller {
         } else {
             $out = array('stat' => 0);
         }
-        
+
         echo json_encode($out);
     }
 
@@ -163,7 +165,7 @@ class Main extends CI_Controller {
         $this->session->sess_destroy();
         redirect('');
     }
-    
+
     function register(){
         $input = array(
             'username' => $this->input->post('pasien_id'),
@@ -173,7 +175,7 @@ class Main extends CI_Controller {
             'tgl_lahir' => $this->input->post('pasien_tgl'),
             'alamat' => $this->input->post('pasien_almt')
         );
-        
+
         $this->load->model('main_model');
         if($this->main_model->register_user($input)){
             $stat = 1;
@@ -181,29 +183,29 @@ class Main extends CI_Controller {
         else{
             $stat = 0;
         }
-        
+
         echo json_encode(array('stat' => $stat));
     }
-    
+
     function user_list(){
         $this->load->model('main_model');
         $data['user_list'] = $this->main_model->getAllUser();
         $this->load->view('home/admin/user_list', $data);
     }
-    
+
     function user_stat(){
         $id = $this->input->post('id');
         $this->load->model('main_model');
-        $data = $this->main_model->get_user_stat($id);        
+        $data = $this->main_model->get_user_stat($id);
         echo json_encode($data);
     }
-    
+
     function delete_user(){
         $id = $this->input->post('id');
         $this->load->model('main_model');
         if($this->main_model->delete_user($id)){
             $stat = 1;
-        }  
+        }
         else{
             $stat = 0;
         }
@@ -211,7 +213,7 @@ class Main extends CI_Controller {
     }
 
     function upload_structur(){
-        
+
     }
 
     function edit_pasien(){
@@ -244,7 +246,7 @@ class Main extends CI_Controller {
     function update_structur(){
         $this->load->helper(array('html','url','directory'));
         if(isset($_FILES['struktur_img']))        {
-            
+
             $config['upload_path'] = './assets/img';
             $config['allowed_types'] = 'gif|jpg|png|bmp';
             $config['overwrite'] = TRUE;
@@ -254,19 +256,19 @@ class Main extends CI_Controller {
                 $image_data = $this->upload->data();
                 $this->db->where('id_setting', 1);
                 $this->db->update('setting', array('img_org'=> $image_data['file_name']));
-                
+
                 redirect('main/profile');
 
                 // echo img(array(
                 //     'src'=>base_url("assets/img/$image_data[file_name]"),
                 //     'width'=>600,
                 //     'style'=>'margin-top:10px; padding:10px; background:#bbb'
-                // )); 
+                // ));
             }
-        } 
+        }
         else{
             $this->load->view('home/admin/cp_upload_struktur');
-        } 
+        }
     }
 
     function cp_admin($view){
@@ -276,7 +278,7 @@ class Main extends CI_Controller {
             $this->data['data'] = $this->main_model->$model();
             $this->load->view('home/admin/'.$view, $this->data);
         }
-        else{                
+        else{
             $this->load->view('home/admin/'.$view, $this->data);
         }
     }

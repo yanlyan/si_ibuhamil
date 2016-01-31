@@ -48,9 +48,9 @@
 $active_group = 'default';
 $active_record = TRUE;
 
-$db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = '';
+$db['default']['hostname'] = '128.199.97.82';
+$db['default']['username'] = 'bumil';
+$db['default']['password'] = 'bumil';
 $db['default']['database'] = 'db_sibumil';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
