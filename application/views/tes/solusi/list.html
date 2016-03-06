@@ -1,0 +1,90 @@
+<section class="content-header">
+    <h1>
+        Data Tips
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Tes</a></li>
+        <li class="active">Tips</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="box box-success">
+                <div class="box-header with-border">
+                    <h3 class="box-title"><i class="fa fa-search"></i>&nbsp; Pencarian</h3>
+                </div>
+                <div class="box-body">
+                    <form action="{$config->site_url('tes/solusi/search_process')}" method="post" class="form-horizontal">
+                        <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label for="isi_pasien" class="col-sm-3 control-label">Isi Pasien</label>
+                                        <div class="col-sm-7">
+                                            <input type="text" name="isi_pasien" class="form-control" id="isi_pasien" placeholder="-- semua --" value="{$search.isi_pasien|default:''}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-2 pull-right action-right">
+                                    <input class="btn btn-primary" name="save" type="submit" value="Cari">
+                                    <input class="btn btn-danger" name="save" type="submit" value="Reset">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tabel Data Tips</h3>
+                    <div class="box-tools">
+                        <a class="btn btn-sm btn-success" href="{$config->site_url('tes/solusi/add')}"><i class="fa fa-plus"></i>&nbsp; Tambah Data</a>
+                    </div>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr>
+                                <th width="5%">No.</th>
+                                <th width="35%">Isi Pakar</th>
+                                <th width="35%">Isi Pasien</th>
+                                <th width="10%">Kategori</th>
+
+                            </tr>
+                            {foreach $rs_id as $result}
+                            <tr>
+                                <td  align="center">{$no++}.</td>
+                                <td>{$result.isi_pakar}</td>
+                                <td>{$result.isi_pasien}</td>
+                                <td>{$result.kategori}</td>
+                                <td>
+                                    <a href="{$config->site_url('tes/solusi/edit')}/{$result.id_tips}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>&nbsp; Edit</a>
+                                    <a href="{$config->site_url('tes/solusi/delete')}/{$result.id_tips}" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i>&nbsp; Hapus</a>
+                                </td>
+                            </tr>
+                            {/foreach}
+
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+                <div class="box-footer clearfix">
+                    <ul class="pagination pagination-sm no-margin pull-right">
+                        {$pagination.total|default:'0'}</strong> Data</li>
+                        {$pagination.data|default:''}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

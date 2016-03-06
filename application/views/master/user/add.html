@@ -1,0 +1,72 @@
+<section class="content-header">
+    <h1>
+        Data User
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Master</a></li>
+        <li><a href="#">User</a></li>
+        <li class="active">Tambah Data</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tambah Data User</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="{$config->site_url('master/user/add_process')}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="user_nm" class="col-sm-2 control-label">Nama User</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="user_nm" class="form-control" id="user_nm" placeholder="Nama User" value="{$result.user_nm|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_identitas" class="col-sm-2 control-label">No. Identitas</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="no_identitas" class="form-control" id="no_identitas" placeholder="No. Identitas" value="{$result.no_identitas|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_alamat" class="col-sm-2 control-label">Alamat</label>
+                            <div class="col-sm-5">
+                                <textarea name="user_alamat" class="form-control" rows="5" cols="40">{$result.user_alamat|default:''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="user_pekerjaan" class="col-sm-2 control-label">Pekerjaan</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="user_pekerjaan" class="form-control" id="user_pekerjaan" placeholder="Pekerjaan" value="{$result.user_pekerjaan|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="no_telepon" class="col-sm-2 control-label">No Telepon</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="no_telepon" class="form-control" id="no_telepon" placeholder="No Telepon" value="{$result.no_telepon|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal_lahir" class="col-sm-2 control-label">Tanggal Lahir</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="tanggal_lahir" class="form-control" id="tanggal_lahir" placeholder="Tanggal Lahir" value="{$result.tanggal_lahir|default:''}">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="{$config->site_url('master/user/')}"><i class="fa fa-long-arrow-left"></i>&nbsp; Batal</a>
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
