@@ -24,8 +24,8 @@ class solusi extends ApplicationBase{
         $search = $this->tsession->userdata('search_tips');
         $this->smarty->assign('search', $search);
         // parameter
-        $isi_pasien = !empty($search['isi_pasien']) ? "%" . $search['isi_pasien'] . "%" : "%";
-        $params_search = array($isi_pasien);
+        $kategori = !empty($search['kategori']) ? "%" . $search['kategori'] . "%" : "%";
+        $params_search = array($kategori);
 
         // pagination
         $config['base_url'] = site_url("tes/solusi/index/");
@@ -49,7 +49,7 @@ class solusi extends ApplicationBase{
         $this->smarty->assign("no", $start);
 
         // /* end of pagination ---------------------- */
-        $params = array($isi_pasien, ($start - 1), $config['per_page']);
+        $params = array($kategori, ($start - 1), $config['per_page']);
         // get data
         $this->smarty->assign("rs_id", $this->m_solusi->get_list_tips($params));
         // notification
@@ -65,7 +65,7 @@ class solusi extends ApplicationBase{
         //--
         if ($this->input->post('save') == 'Cari') {
             $params = array(
-                "isi_pasien" => $this->input->post('isi_pasien'),
+                "kategori" => $this->input->post('kategori'),
             );
             // set
             $this->tsession->set_userdata('search_tips', $params);

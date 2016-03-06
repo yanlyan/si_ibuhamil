@@ -1,0 +1,48 @@
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $('#editor-resiko').summernote({
+        height: 300,                 // set editor height
+        minHeight: null,             // set minimum height of editor
+        maxHeight: null,             // set maximum height of editor
+        focus: true
+    });
+});
+</script>
+<section class="content-header">
+    <h1>
+        Informasi Resiko Anemia
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-info"></i> Informasi</a></li>
+        <li class="active">Resiko Anemia</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Informasi Resiko Anemia</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="{$config->site_url('info/resiko/edit_process')}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <textarea name="info_resiko" id="editor-resiko">
+                            {$info_resiko.info|default:''}
+                        </textarea>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="{$config->site_url('tes/solusi/')}"><i class="fa fa-long-arrow-left"></i>&nbsp; Batal</a>
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

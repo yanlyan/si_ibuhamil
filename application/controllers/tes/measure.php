@@ -142,6 +142,7 @@ class measure extends ApplicationBase{
         $this->_set_page_rule("U");
         // input validation
 
+        $this->tnotification->set_rules('id', 'ID', 'trim|required');
         $this->tnotification->set_rules('id_konsul', 'Id_konsul', 'trim|required');
         $this->tnotification->set_rules('hasil', 'Hasil', 'trim|required');
         $this->tnotification->set_rules('mb', 'Mb', 'trim');
@@ -152,8 +153,8 @@ class measure extends ApplicationBase{
             $params_update = array(
                 'id_konsul' => $this->input->post('id_konsul'),
                 'hasil' => $this->input->post('hasil'),
-                'mb' => $this->input->post('Mb'),
-                'md' => $this->input->post('Md'),
+                'mb' => $this->input->post('mb'),
+                'md' => $this->input->post('md'),
             );
 
             $where = array(

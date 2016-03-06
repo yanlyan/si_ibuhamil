@@ -20,9 +20,15 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="isi_pasien" class="col-sm-3 control-label">Isi Pasien</label>
+                                        <label for="kategori" class="col-sm-3 control-label">Kategori</label>
                                         <div class="col-sm-7">
-                                            <input type="text" name="isi_pasien" class="form-control" id="isi_pasien" placeholder="-- semua --" value="{$search.isi_pasien|default:''}">
+                                            <select name="kategori" class="form-control">
+                                                <option value="">-- semua --</option>
+                                                <option {if $search.kategori|default:'' eq 'ringan'}selected{/if} value="ringan">RINGAN</option>
+                                                <option {if $search.kategori|default:'' eq 'sedang'}selected{/if} value="sedang">SEDANG</option>
+                                                <option {if $search.kategori|default:'' eq 'berat'}selected{/if} value="berat">BERAT</option>
+                                                <option {if $search.kategori|default:'' eq 'tidak'}selected{/if} value="tidak">TIDAK ANEMIA</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

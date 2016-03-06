@@ -22,7 +22,13 @@
                                     <div class="form-group">
                                         <label for="hasil" class="col-sm-3 control-label">Hasil</label>
                                         <div class="col-sm-7">
-                                            <input type="text" name="Hasil" class="form-control" id="Hasil" placeholder="-- semua --" value="{$search.hasil|default:''}">
+                                            <select name="hasil" class="form-control">
+                                                <option value="">-- semua --</option>
+                                                <option {if $search.hasil|default:'' eq 'ringan'}selected{/if} value="ringan">RINGAN</option>
+                                                <option {if $search.hasil|default:'' eq 'sedang'}selected{/if} value="sedang">SEDANG</option>
+                                                <option {if $search.hasil|default:'' eq 'berat'}selected{/if} value="berat">BERAT</option>
+                                                <option {if $search.hasil|default:'' eq 'tidak'}selected{/if} value="tidak">TIDAK ANEMIA</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

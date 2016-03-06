@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class m_measure extends CI_Model{
 
     function get_list_diagnosa($params){
-        $sql = "SELECT * FROM diagnosa WHERE id_konsul LIKE ? LIMIT ?,?";
+        $sql = "SELECT * FROM diagnosa WHERE hasil LIKE ? LIMIT ?,?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->result_array();
@@ -16,7 +16,7 @@ class m_measure extends CI_Model{
     }
 
     function get_total_diagnosa($params){
-        $sql = "SELECT COUNT(*) as 'total' FROM diagnosa WHERE id_konsul LIKE ?";
+        $sql = "SELECT COUNT(*) as 'total' FROM diagnosa WHERE hasil LIKE ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();

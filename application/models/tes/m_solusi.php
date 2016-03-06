@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class m_solusi extends CI_Model{
 
     function get_list_tips($params){
-        $sql = "SELECT * FROM tips WHERE isi_pakar LIKE ? LIMIT ?,?";
+        $sql = "SELECT * FROM tips WHERE kategori LIKE ? LIMIT ?,?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->result_array();
@@ -16,7 +16,7 @@ class m_solusi extends CI_Model{
     }
 
     function get_total_tips($params){
-        $sql = "SELECT COUNT(*) as 'total' FROM tips WHERE isi_pakar LIKE ?";
+        $sql = "SELECT COUNT(*) as 'total' FROM tips WHERE kategori LIKE ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
