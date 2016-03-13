@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30-dev/44, created on 2016-03-03 08:17:43
+/* Smarty version 3.1.30-dev/44, created on 2016-03-07 07:48:26
   from "C:\xampp\htdocs\si_ibuhamil\application\views\tes\solusi\list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_56d7e517cfb787_32543338',
+  'unifunc' => 'content_56dd243a0b3491_22128608',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0f50e9493a7aad6f6b3fef74a628b6ba1922fbef' => 
     array (
       0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\tes\\solusi\\list.html',
-      1 => 1456989435,
+      1 => 1457243374,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:base/templates/notification.html' => 1,
   ),
 ),false)) {
-function content_56d7e517cfb787_32543338 (Smarty_Internal_Template $_smarty_tpl) {
+function content_56dd243a0b3491_22128608 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <section class="content-header">
     <h1>
@@ -46,10 +46,15 @@ function content_56d7e517cfb787_32543338 (Smarty_Internal_Template $_smarty_tpl)
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="isi_pasien" class="col-sm-3 control-label">Isi Pasien</label>
+                                        <label for="kategori" class="col-sm-3 control-label">Kategori</label>
                                         <div class="col-sm-7">
-                                            <input type="text" name="isi_pasien" class="form-control" id="isi_pasien" placeholder="-- semua --" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['search']->value['isi_pasien'])===null||$tmp==='' ? '' : $tmp);?>
-">
+                                            <select name="kategori" class="form-control">
+                                                <option value="">-- semua --</option>
+                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['kategori'])===null||$tmp==='' ? '' : $tmp) == 'ringan') {?>selected<?php }?> value="ringan">RINGAN</option>
+                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['kategori'])===null||$tmp==='' ? '' : $tmp) == 'sedang') {?>selected<?php }?> value="sedang">SEDANG</option>
+                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['kategori'])===null||$tmp==='' ? '' : $tmp) == 'berat') {?>selected<?php }?> value="berat">BERAT</option>
+                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['kategori'])===null||$tmp==='' ? '' : $tmp) == 'tidak') {?>selected<?php }?> value="tidak">TIDAK ANEMIA</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>

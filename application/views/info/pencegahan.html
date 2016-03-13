@@ -1,20 +1,21 @@
 <script type="text/javascript">
 jQuery(document).ready(function($) {
-    $('#editor-resiko').summernote({
+    $('#editor-pencegahan').summernote({
         height: 300,                 // set editor height
         minHeight: null,             // set minimum height of editor
         maxHeight: null,             // set maximum height of editor
         focus: true
     });
 });
+
 </script>
 <section class="content-header">
     <h1>
-        Informasi Resiko Anemia
+        Informasi pencegahan Anemia
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-info"></i> Informasi</a></li>
-        <li class="active">Resiko Anemia</li>
+        <li class="active">pencegahan Anemia</li>
     </ol>
 </section>
 <section class="content">
@@ -25,19 +26,19 @@ jQuery(document).ready(function($) {
             <!-- end of notification template-->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Edit Informasi Resiko Anemia</h3>
+                    <h3 class="box-title">Edit Informasi pencegahan Anemia</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="{$config->site_url('info/resiko/edit_process')}" method="post" class="form-horizontal">
+                <form action="{$config->site_url('info/pencegahan/edit_process')}" method="post" class="form-horizontal">
                     <div class="box-body">
-                        <textarea name="info_resiko" id="editor-resiko">
-                            {$info_resiko.info|default:''}
+                        <textarea name="info_pencegahan" id="editor-pencegahan">
+                            {$info_pencegahan.info|default:''}
                         </textarea>
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
-                        
+
                         <button type="submit" class="btn btn-info pull-right">Simpan</button>
                     </div>
                     <!-- /.box-footer -->

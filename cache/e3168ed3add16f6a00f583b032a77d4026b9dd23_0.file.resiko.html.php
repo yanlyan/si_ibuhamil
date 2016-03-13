@@ -1,4 +1,29 @@
-<script type="text/javascript">
+<?php
+/* Smarty version 3.1.30-dev/44, created on 2016-03-06 07:04:10
+  from "C:\xampp\htdocs\si_ibuhamil\application\views\info\resiko.html" */
+
+/* @var Smarty_Internal_Template $_smarty_tpl */
+if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
+  'version' => '3.1.30-dev/44',
+  'unifunc' => 'content_56dbc85a8988b2_80978807',
+  'has_nocache_code' => false,
+  'file_dependency' => 
+  array (
+    'e3168ed3add16f6a00f583b032a77d4026b9dd23' => 
+    array (
+      0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\info\\resiko.html',
+      1 => 1457244164,
+      2 => 'file',
+    ),
+  ),
+  'includes' => 
+  array (
+    'file:base/templates/notification.html' => 1,
+  ),
+),false)) {
+function content_56dbc85a8988b2_80978807 (Smarty_Internal_Template $_smarty_tpl) {
+echo '<script'; ?>
+ type="text/javascript">
 jQuery(document).ready(function($) {
     $('#editor-resiko').summernote({
         height: 300,                 // set editor height
@@ -7,7 +32,8 @@ jQuery(document).ready(function($) {
         focus: true
     });
 });
-</script>
+<?php echo '</script'; ?>
+>
 <section class="content-header">
     <h1>
         Informasi Resiko Anemia
@@ -21,7 +47,9 @@ jQuery(document).ready(function($) {
     <div class="row">
         <div class="col-md-12">
             <!-- notification template -->
-            {include file="base/templates/notification.html"}
+            <?php $_smarty_tpl->_subTemplateRender("file:base/templates/notification.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
+?>
+
             <!-- end of notification template-->
             <div class="box box-info">
                 <div class="box-header with-border">
@@ -29,10 +57,12 @@ jQuery(document).ready(function($) {
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="{$config->site_url('info/resiko/edit_process')}" method="post" class="form-horizontal">
+                <form action="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('info/resiko/edit_process');?>
+" method="post" class="form-horizontal">
                     <div class="box-body">
                         <textarea name="info_resiko" id="editor-resiko">
-                            {$info_resiko.info|default:''}
+                            <?php echo (($tmp = @$_smarty_tpl->tpl_vars['info_resiko']->value['info'])===null||$tmp==='' ? '' : $tmp);?>
+
                         </textarea>
                     </div>
                     <!-- /.box-body -->
@@ -46,3 +76,5 @@ jQuery(document).ready(function($) {
         </div>
     </div>
 </section>
+<?php }
+}

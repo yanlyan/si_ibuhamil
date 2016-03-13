@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30-dev/44, created on 2016-03-03 07:13:39
+/* Smarty version 3.1.30-dev/44, created on 2016-03-07 07:48:56
   from "C:\xampp\htdocs\si_ibuhamil\application\views\tes\measure\list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_56d7d61338a301_37558150',
+  'unifunc' => 'content_56dd245881c162_28282371',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '970eed16e308b3f4302d6f5d1f05b35519bdc8a0' => 
     array (
       0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\tes\\measure\\list.html',
-      1 => 1456985436,
+      1 => 1457243353,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:base/templates/notification.html' => 1,
   ),
 ),false)) {
-function content_56d7d61338a301_37558150 (Smarty_Internal_Template $_smarty_tpl) {
+function content_56dd245881c162_28282371 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <section class="content-header">
     <h1>
@@ -48,8 +48,13 @@ function content_56d7d61338a301_37558150 (Smarty_Internal_Template $_smarty_tpl)
                                     <div class="form-group">
                                         <label for="hasil" class="col-sm-3 control-label">Hasil</label>
                                         <div class="col-sm-7">
-                                            <input type="text" name="Hasil" class="form-control" id="Hasil" placeholder="-- semua --" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['search']->value['hasil'])===null||$tmp==='' ? '' : $tmp);?>
-">
+                                            <select name="hasil" class="form-control">
+                                                <option value="">-- semua --</option>
+                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['hasil'])===null||$tmp==='' ? '' : $tmp) == 'ringan') {?>selected<?php }?> value="ringan">RINGAN</option>
+                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['hasil'])===null||$tmp==='' ? '' : $tmp) == 'sedang') {?>selected<?php }?> value="sedang">SEDANG</option>
+                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['hasil'])===null||$tmp==='' ? '' : $tmp) == 'berat') {?>selected<?php }?> value="berat">BERAT</option>
+                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['hasil'])===null||$tmp==='' ? '' : $tmp) == 'tidak') {?>selected<?php }?> value="tidak">TIDAK ANEMIA</option>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
