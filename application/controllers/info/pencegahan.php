@@ -43,7 +43,7 @@ class pencegahan extends ApplicationBase{
         $params = array('info' => $info_pencegahan);
         $where = array('jenis_info' => 'pencegahan');
 
-        if ($this->m_info->update_info($params, $update)) {
+        if ($this->m_info->update_info($params, $where)) {
             // notification
             $this->tnotification->delete_last_field();
             $this->tnotification->sent_notification("success", "Data berhasil disimpan");

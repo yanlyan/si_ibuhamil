@@ -1,29 +1,4 @@
-<?php
-/* Smarty version 3.1.30-dev/44, created on 2016-03-13 05:00:05
-  from "C:\xampp\htdocs\si_ibuhamil\application\views\info\faktor.html" */
-
-/* @var Smarty_Internal_Template $_smarty_tpl */
-if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
-  'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_56e4e5c5cc2201_06601545',
-  'has_nocache_code' => false,
-  'file_dependency' => 
-  array (
-    '08d0e47e0cb8bb439666865485567c7bdc58a061' => 
-    array (
-      0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\info\\faktor.html',
-      1 => 1457841511,
-      2 => 'file',
-    ),
-  ),
-  'includes' => 
-  array (
-    'file:base/templates/notification.html' => 1,
-  ),
-),false)) {
-function content_56e4e5c5cc2201_06601545 (Smarty_Internal_Template $_smarty_tpl) {
-echo '<script'; ?>
- type="text/javascript">
+<script type="text/javascript">
 jQuery(document).ready(function($) {
     $('#editor-faktor').summernote({
         height: 300,                 // set editor height
@@ -32,8 +7,7 @@ jQuery(document).ready(function($) {
         focus: true
     });
 });
-<?php echo '</script'; ?>
->
+</script>
 <section class="content-header">
     <h1>
         Informasi faktor Anemia
@@ -47,9 +21,7 @@ jQuery(document).ready(function($) {
     <div class="row">
         <div class="col-md-12">
             <!-- notification template -->
-            <?php $_smarty_tpl->_subTemplateRender("file:base/templates/notification.html", $_smarty_tpl->cache_id, $_smarty_tpl->compile_id, 0, $_smarty_tpl->cache_lifetime, array(), 0, false);
-?>
-
+            {include file="base/templates/notification.html"}
             <!-- end of notification template-->
             <div class="box box-info">
                 <div class="box-header with-border">
@@ -57,12 +29,10 @@ jQuery(document).ready(function($) {
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('info/faktor/edit_process');?>
-" method="post" class="form-horizontal">
+                <form action="{$config->site_url('info/faktor/edit_process')}" method="post" class="form-horizontal">
                     <div class="box-body">
                         <textarea name="info_faktor" id="editor-faktor">
-                            <?php echo (($tmp = @$_smarty_tpl->tpl_vars['info_faktor']->value['info'])===null||$tmp==='' ? '' : $tmp);?>
-
+                            {$info_faktor.info|default:''}
                         </textarea>
                     </div>
                     <!-- /.box-body -->
@@ -76,5 +46,3 @@ jQuery(document).ready(function($) {
         </div>
     </div>
 </section>
-<?php }
-}

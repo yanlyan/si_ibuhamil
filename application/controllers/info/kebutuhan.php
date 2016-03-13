@@ -43,7 +43,7 @@ class kebutuhan extends ApplicationBase{
         $params = array('info' => $info_kebutuhan);
         $where = array('jenis_info' => 'kebutuhan');
 
-        if ($this->m_info->update_info($params, $update)) {
+        if ($this->m_info->update_info($params, $where)) {
             // notification
             $this->tnotification->delete_last_field();
             $this->tnotification->sent_notification("success", "Data berhasil disimpan");
