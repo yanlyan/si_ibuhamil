@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30-dev/44, created on 2016-03-06 07:20:59
+/* Smarty version 3.1.30-dev/44, created on 2016-03-13 04:50:43
   from "C:\xampp\htdocs\si_ibuhamil\application\views\info\pencegahan.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_56dbcc4bc84433_19976426',
+  'unifunc' => 'content_56e4e3934e74a7_31454306',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '4cf779f7d00bcaac5602299219f3dc9e05cf243d' => 
     array (
       0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\info\\pencegahan.html',
-      1 => 1457245182,
+      1 => 1457840343,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:base/templates/notification.html' => 1,
   ),
 ),false)) {
-function content_56dbcc4bc84433_19976426 (Smarty_Internal_Template $_smarty_tpl) {
+function content_56e4e3934e74a7_31454306 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
 jQuery(document).ready(function($) {
@@ -32,6 +32,7 @@ jQuery(document).ready(function($) {
         focus: true
     });
 });
+
 <?php echo '</script'; ?>
 >
 <section class="content-header">
