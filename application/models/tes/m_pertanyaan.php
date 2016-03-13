@@ -15,6 +15,18 @@ class m_pertanyaan extends CI_Model{
         }
     }
 
+    function get_all_konsultasi(){
+        $sql = "SELECT * FROM konsultasi";
+        $query = $this->db->query($sql);
+        if ($query->num_rows() > 0) {
+            $result = $query->result_array();
+            $query->free_result();
+            return $result;
+        } else {
+            return array();
+        }
+    }
+
     function get_total_konsultasi($params){
         $sql = "SELECT COUNT(*) as 'total' FROM konsultasi WHERE nama_konsul LIKE ?";
         $query = $this->db->query($sql, $params);
