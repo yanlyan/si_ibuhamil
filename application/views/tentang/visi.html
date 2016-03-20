@@ -1,0 +1,48 @@
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $('#editor-visi').summernote({
+        height: 300,                 // set editor height
+        minHeight: null,             // set minimum height of editor
+        maxHeight: null,             // set maximum height of editor
+        focus: true
+    });
+});
+</script>
+<section class="content-header">
+    <h1>
+        Informasi Visi Misi
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-info"></i> Informasi</a></li>
+        <li class="active">visi misi</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Informasi visi misi</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="{$config->site_url('tentang/visi/edit_process')}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <textarea name="tentang_visi" id="editor-visi">
+                            {$tentang_visi.info|default:''}
+                        </textarea>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

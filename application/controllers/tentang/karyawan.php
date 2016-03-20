@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // load base class if needed
 require_once( APPPATH . 'controllers/base/OperatorBase.php' );
 
-class jabatan extends ApplicationBase{
+class karyawan extends ApplicationBase{
 
     public function __construct(){
         parent::__construct();
         // load models
-        $this->load->model('master/m_jabatan');
+        $this->load->model('tentang/m_karyawan');
 
         $this->load->library('pagination');
         $this->load->library('tnotification');
@@ -19,17 +19,17 @@ class jabatan extends ApplicationBase{
         // set page rules
         $this->_set_page_rule("R");
         // set template content
-        $this->smarty->assign("template_content", "master/jabatan/list.html");
+        $this->smarty->assign("template_content", "tentang/karyawan/list.html");
         // session
-        $search = $this->tsession->userdata('search_jabatan');
+        $search = $this->tsession->userdata('search_karyawan');
         $this->smarty->assign('search', $search);
         // parameter
-        $nama_jabatan = !empty($search['nama_jabatan']) ? "%" . $search['nama_jabatan'] . "%" : "%";
-        $params_search = array($nama_jabatan);
+        $nama_karyawan = !empty($search['nama_karyawan']) ? "%" . $search['nama_karyawan'] . "%" : "%";
+        $params_search = array($nama_karyawan);
 
         // pagination
-        $config['base_url'] = site_url("master/jabatan/index/");
-        $config['total_rows'] = $this->m_jabatan->get_total_jabatan($params_search);
+        $config['base_url'] = site_url("tentang/karyawan/index/");
+        $config['total_rows'] = $this->m_karyawan->get_total_karyawan($params_search);
 
         $config['uri_segment'] = 4;
         $config['per_page'] = 10;
@@ -49,9 +49,9 @@ class jabatan extends ApplicationBase{
         $this->smarty->assign("no", $start);
 
         // /* end of pagination ---------------------- */
-        $params = array($nama_jabatan, ($start - 1), $config['per_page']);
+        $params = array($nama_karyawan, ($start - 1), $config['per_page']);
         // get data
-        $this->smarty->assign("rs_id", $this->m_jabatan->get_list_jabatan($params));
+        $this->smarty->assign("rs_id", $this->m_karyawan->get_list_karyawan($params));
         // notification
         $this->tnotification->display_notification();
         $this->tnotification->display_last_field();
@@ -65,23 +65,23 @@ class jabatan extends ApplicationBase{
         //--
         if ($this->input->post('save') == 'Cari') {
             $params = array(
-                "nama_jabatan" => $this->input->post('nama_jabatan'),
+                "nama_karyawan" => $this->input->post('nama_karyawan'),
             );
             // set
-            $this->tsession->set_userdata('search_jabatan', $params);
+            $this->tsession->set_userdata('search_karyawan', $params);
         } else {
             // unset
-            $this->tsession->unset_userdata('search_jabatan');
+            $this->tsession->unset_userdata('search_karyawan');
         }
         //--
-        redirect('master/jabatan');
+        redirect('tentang/karyawan');
     }
 
     function add(){
         // set page rules
         $this->_set_page_rule("C");
         // set template content
-        $this->smarty->assign("template_content", "master/jabatan/add.html");
+        $this->smarty->assign("template_content", "tentang/karyawan/add.html");
         // notification
         $this->tnotification->display_notification();
         $this->tnotification->display_last_field();
@@ -92,18 +92,21 @@ class jabatan extends ApplicationBase{
     function add_process(){
         // set page rules
         $this->_set_page_rule("C");
-
-        $this->tnotification->set_rules('nama_jabatan', 'nama jabatan', 'trim|required');
+        $this->tnotification->set_rules('nik', 'Nik', 'trim|required');
+        $this->tnotification->set_rules('nama_karyawan', 'Nama karyawan', 'trim|required');
+        $this->tnotification->set_rules('alamat', 'alamat', 'trim|required');
+        $this->tnotification->set_rules('no_tlp', 'No tlp', 'trim|required');
 
         if ($this->tnotification->run() !== FALSE) {
 
             $params_insert = array(
-
-                'nama_jabatan' => $this->input->post('nama_jabatan'),
-
+                'nik' => $this->input->post('nik'),
+                'nama_karyawan' => $this->input->post('nama_karyawan'),
+                'alamat' => $this->input->post('alamat'),
+                'no_tlp' => $this->input->post('no_tlp'),
             );
 
-            if ($this->m_jabatan->insert_jabatan($params_insert)) {
+            if ($this->m_karyawan->insert_karyawan($params_insert)) {
                 // notification
                 $this->tnotification->delete_last_field();
                 $this->tnotification->sent_notification("success", "Data berhasil disimpan");
@@ -115,16 +118,16 @@ class jabatan extends ApplicationBase{
             // default error
             $this->tnotification->sent_notification("error", "Data gagal disimpan, waktu validasi");
         }
-        redirect('master/jabatan/add');
+        redirect('tentang/karyawan/add');
     }
 
-    function edit($id_jabatan){
+    function edit($id_karyawan){
         // set page rules
         $this->_set_page_rule("U");
         // set template content
-        $this->smarty->assign("template_content", "master/jabatan/edit.html");
+        $this->smarty->assign("template_content", "tentang/karyawan/edit.html");
         // get data
-        $result = $this->m_jabatan->get_jabatan_by_id($id_jabatan);
+        $result = $this->m_karyawan->get_karyawan_by_id($id_karyawan);
         // assign variable
         $this->smarty->assign('result',$result);
         // notification
@@ -138,22 +141,26 @@ class jabatan extends ApplicationBase{
         // set page rules
         $this->_set_page_rule("U");
         // input validation
-        $this->tnotification->set_rules('id_jabatan', 'id jabatan', 'trim|required');
-        $this->tnotification->set_rules('nama_jabatan', 'nama jabatan', 'trim|required');
+        $this->tnotification->set_rules('id_karyawan', 'ID karyawan', 'trim|required');
+        $this->tnotification->set_rules('nik', 'Nik', 'trim|required');
+        $this->tnotification->set_rules('nama_karyawan', 'Nama karyawan', 'trim|required');
+        $this->tnotification->set_rules('no_tlp', 'No_tlp', 'trim|required');
 
         if ($this->tnotification->run() !== FALSE) {
 
             $params_update = array(
-
-                'nama_jabatan' => $this->input->post('nama_jabatan'),
+                'nik' => $this->input->post('nik'),
+                'nama_karyawan' => $this->input->post('nama_karyawan'),
+                'alamat' => $this->input->post('alamat'),
+                'no_tlp' => $this->input->post('no_tlp'),
 
             );
 
             $where = array(
-                'id_jabatan' => $this->input->post('id_jabatan')
+                'id_karyawan' => $this->input->post('id_karyawan')
             );
 
-            if ($this->m_jabatan->update_jabatan($params_update, $where)) {
+            if ($this->m_karyawan->update_karyawan($params_update, $where)) {
                 // notification
                 $this->tnotification->delete_last_field();
                 $this->tnotification->sent_notification("success", "Data berhasil disimpan");
@@ -165,12 +172,12 @@ class jabatan extends ApplicationBase{
             // default error
             $this->tnotification->sent_notification("error", "Data gagal disimpan");
         }
-        redirect('master/jabatan/edit/'.$this->input->post('id_jabatan'));
+        redirect('tentang/karyawan/edit/'.$this->input->post('id_karyawan'));
     }
 
-    function delete($id_jabatan){
+    function delete($id_karyawan){
         $this->_set_page_rule("D");
-        if ($this->m_jabatan->delete_jabatan($id_jabatan)) {
+        if ($this->m_karyawan->delete_karyawan($id_karyawan)) {
             // notification
             $this->tnotification->delete_last_field();
             $this->tnotification->sent_notification("success", "Data berhasil dihapus");
@@ -178,7 +185,7 @@ class jabatan extends ApplicationBase{
             // default error
             $this->tnotification->sent_notification("error", "Data gagal dihapus");
         }
-        redirect('master/jabatan');
+        redirect('tentang/karyawan');
     }
 
 }
