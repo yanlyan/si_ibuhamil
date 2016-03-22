@@ -1,6 +1,6 @@
 <script type="text/javascript">
 jQuery(document).ready(function($) {
-    $('#editor-visi').summernote({
+    $('#editor-kebijakan').summernote({
         height: 300,                 // set editor height
         minHeight: null,             // set minimum height of editor
         maxHeight: null,             // set maximum height of editor
@@ -10,11 +10,11 @@ jQuery(document).ready(function($) {
 </script>
 <section class="content-header">
     <h1>
-        Tentang Visi Misi
+        Tentang kebijakan
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-info"></i> Tentang </a></li>
-        <li class="active">visi misi</li>
+        <li class="active">kebijakan</li>
     </ol>
 </section>
 <section class="content">
@@ -25,14 +25,14 @@ jQuery(document).ready(function($) {
             <!-- end of notification template-->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Edit Tentang visi misi</h3>
+                    <h3 class="box-title">Edit Tentang kebijakan</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="{$config->site_url('tentang/visi/edit_process')}" method="post" class="form-horizontal">
+                <form action="{$config->site_url('tentang/kebijakan/edit_process')}" method="post" class="form-horizontal">
                     <div class="box-body">
-                        <textarea name="tentang_visi" id="editor-visi">
-                            {$tentang_visi.tentang|default:''}
+                        <textarea name="tentang_kebijakan" id="editor-kebijakan">
+                            {$tentang_kebijakan.tentang|default:''}
                         </textarea>
                     </div>
                     <!-- /.box-body -->

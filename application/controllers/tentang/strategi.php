@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // load base class if needed
 require_once( APPPATH . 'controllers/base/OperatorBase.php' );
 
-class visi extends ApplicationBase{
+class strategi extends ApplicationBase{
 
     public function __construct(){
         parent::__construct();
@@ -18,14 +18,14 @@ class visi extends ApplicationBase{
         // set page rules
         $this->_set_page_rule("U");
         // set template content
-        $this->smarty->assign("template_content", "tentang/visi.html");
+        $this->smarty->assign("template_content", "tentang/strategi.html");
         // load js
         $this->smarty->load_javascript('summernote/summernote.js');
         // load css
         $this->smarty->load_style('summernote/summernote.css');
 
-        $tentang_visi = $this->m_tentang->get_tentang_by_jenis('visi');
-        $this->smarty->assign("tentang_visi", $tentang_visi);
+        $tentang_strategi = $this->m_tentang->get_tentang_by_jenis('strategi');
+        $this->smarty->assign("tentang_strategi", $tentang_strategi);
 
         // notification
         $this->tnotification->display_notification();
@@ -38,10 +38,10 @@ class visi extends ApplicationBase{
         // set page rules
         $this->_set_page_rule("U");
 
-        $tentang_visi = $this->input->post('tentang_visi');
+        $tentang_strategi = $this->input->post('tentang_strategi');
 
-        $params = array('tentang' => $tentang_visi);
-        $where = array('jenis_tentang' => 'visi');
+        $params = array('tentang' => $tentang_strategi);
+        $where = array('jenis_tentang' => 'strategi');
 
         if ($this->m_tentang->update_tentang($params, $where)) {
             // notification
@@ -50,7 +50,7 @@ class visi extends ApplicationBase{
         }else{
             $this->tnotification->sent_notification("error", "Data gagal disimpan");
         }
-        redirect('tentang/visi');
+        redirect('tentang/strategi');
     }
 
 }
