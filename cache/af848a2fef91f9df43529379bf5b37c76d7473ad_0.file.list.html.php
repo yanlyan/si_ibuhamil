@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30-dev/44, created on 2016-04-10 14:10:35
+/* Smarty version 3.1.30-dev/44, created on 2016-04-10 15:12:33
   from "C:\xampp\htdocs\si_ibuhamil\application\views\tentang\struktur\list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_570a42bb3df651_23193817',
+  'unifunc' => 'content_570a51411ea7c2_98505411',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     'af848a2fef91f9df43529379bf5b37c76d7473ad' => 
     array (
       0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\tentang\\struktur\\list.html',
-      1 => 1460272346,
+      1 => 1460293862,
       2 => 'file',
     ),
   ),
@@ -21,16 +21,16 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:base/templates/notification.html' => 1,
   ),
 ),false)) {
-function content_570a42bb3df651_23193817 (Smarty_Internal_Template $_smarty_tpl) {
+function content_570a51411ea7c2_98505411 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 
 <section class="content-header">
     <h1>
-        Data Kegiatan
+        Data struktur
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-database"></i> Tentang</a></li>
-        <li class="active">Kegiatan</li>
+        <li class="active">struktur</li>
     </ol>
 </section>
 <section class="content">
@@ -41,15 +41,15 @@ function content_570a42bb3df651_23193817 (Smarty_Internal_Template $_smarty_tpl)
                     <h3 class="box-title"><i class="fa fa-search"></i>&nbsp; Pencarian</h3>
                 </div>
                 <div class="box-body">
-                    <form action="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/kegiatan/search_process');?>
+                    <form action="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/struktur/search_process');?>
 " method="post" class="form-horizontal">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="nama_kegiatan" class="col-sm-3 control-label">Nama kegiatan</label>
+                                        <label for="nama_jabatan" class="col-sm-3 control-label">Nama jabatan</label>
                                         <div class="col-sm-7">
-                                            <input type="text" name="nama_kegiatan" class="form-control" id="nama_kegiatan" placeholder="-- semua --" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['search']->value['nama_kegiatan'])===null||$tmp==='' ? '' : $tmp);?>
+                                            <input type="text" name="nama_jabatan" class="form-control" id="nama_jabatan" placeholder="-- semua --" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['search']->value['nama_jabatan'])===null||$tmp==='' ? '' : $tmp);?>
 ">
                                         </div>
                                     </div>
@@ -75,9 +75,9 @@ function content_570a42bb3df651_23193817 (Smarty_Internal_Template $_smarty_tpl)
             <!-- end of notification template-->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Tabel Data kegiatan</h3>
+                    <h3 class="box-title">Tabel struktur organisasi</h3>
                     <div class="box-tools">
-                        <a class="btn btn-sm btn-success" href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/kegiatan/add');?>
+                        <a class="btn btn-sm btn-success" href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/struktur/add');?>
 "><i class="fa fa-plus"></i>&nbsp; Tambah Data</a>
                     </div>
                 </div>
@@ -86,10 +86,10 @@ function content_570a42bb3df651_23193817 (Smarty_Internal_Template $_smarty_tpl)
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <th width="5%">No.</th>
-                                <th width="*">Nama Kegiatan</th>
-                                <th width="15%">Tempat</th>
-                                <th width="10%">Tanggal</th>
+
+                                <th width="15%">Nama jabatan</th>
+                                <th width="15%">Nama karyawan</th>
+                                <th width="15%">Penanggung jawab</th>
                                 <th width="13%">Action</th>
                             </tr>
                             <?php
@@ -99,20 +99,19 @@ $_smarty_tpl->tpl_vars['result']->_loop = true;
 $__foreach_result_0_saved = $_smarty_tpl->tpl_vars['result'];
 ?>
                             <tr>
-                                <td  align="center"><?php echo $_smarty_tpl->tpl_vars['no']->value++;?>
-.</td>
-                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['nama_kegiatan'];?>
+
+                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['nama_jabatan'];?>
 </td>
-                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['tempat'];?>
+                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['nama_karyawan'];?>
 </td>
-                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['tanggal'];?>
+                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['penanggung_jawab'];?>
 </td>
                                 <td>
-                                    <a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/kegiatan/edit');?>
-/<?php echo $_smarty_tpl->tpl_vars['result']->value['id_kegiatan'];?>
+                                    <a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/struktur/edit');?>
+/<?php echo $_smarty_tpl->tpl_vars['result']->value['nama_jabatan'];?>
 " class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>&nbsp; Edit</a>
-                                    <a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/kegiatan/delete');?>
-/<?php echo $_smarty_tpl->tpl_vars['result']->value['id_kegiatan'];?>
+                                    <a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/struktur/delete');?>
+/<?php echo $_smarty_tpl->tpl_vars['result']->value['nama_jabatan'];?>
 " class="btn btn-xs btn-danger"><i class="fa fa-minus"></i>&nbsp; Hapus</a>
                                 </td>
                             </tr>
