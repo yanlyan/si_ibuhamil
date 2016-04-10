@@ -1,0 +1,57 @@
+<section class="content-header">
+    <h1>
+        Data Kegiatan
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Master</a></li>
+        <li><a href="#">kegiatan</a></li>
+        <li class="active">Edit</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Edit Data kegiatan</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="{$config->site_url('tentang/kegiatan/edit_process')}" method="post" class="form-horizontal">
+                    <input type="hidden" name="id_kegiatan" value="{$result.id_kegiatan|default:''}">
+                    <div class="box-body">
+
+                        <div class="form-group">
+                            <label for="nama_kegiatan" class="col-sm-2 control-label">Nama kegiatan</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="nama_kegiatan" class="form-control" id="nama_kegiatan" placeholder="nama_kegiatan" value="{$result.nama_kegiatan|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tempat" class="col-sm-2 control-label">Tempat</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="tempat" class="form-control" id="tempat" placeholder="tempat" value="{$result.tempat|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tanggal" class="col-sm-2 control-label">Tanggal</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="tanggal" class="form-control" id="tanggal" placeholder="tanggal" value="{$result.tanggal|default:''}">
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="{$config->site_url('tentang/kegiatan/')}"><i class="fa fa-long-arrow-left"></i>&nbsp; Batal</a>
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

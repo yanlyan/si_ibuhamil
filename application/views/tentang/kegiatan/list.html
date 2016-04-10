@@ -1,10 +1,11 @@
+
 <section class="content-header">
     <h1>
-        Data Tips
+        Data Kegiatan
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-database"></i> Tes</a></li>
-        <li class="active">Tips</li>
+        <li><a href="#"><i class="fa fa-database"></i> Tentang</a></li>
+        <li class="active">Kegiatan</li>
     </ol>
 </section>
 <section class="content">
@@ -15,20 +16,14 @@
                     <h3 class="box-title"><i class="fa fa-search"></i>&nbsp; Pencarian</h3>
                 </div>
                 <div class="box-body">
-                    <form action="{$config->site_url('tes/solusi/search_process')}" method="post" class="form-horizontal">
+                    <form action="{$config->site_url('tentang/kegiatan/search_process')}" method="post" class="form-horizontal">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="kategori" class="col-sm-3 control-label">Kategori</label>
+                                        <label for="nama_kegiatan" class="col-sm-3 control-label">Nama kegiatan</label>
                                         <div class="col-sm-7">
-                                            <select name="kategori" class="form-control">
-                                                <option value="">-- semua --</option>
-                                                <option {if $search.kategori|default:'' eq 'ringan'}selected{/if} value="ringan">RINGAN</option>
-                                                <option {if $search.kategori|default:'' eq 'sedang'}selected{/if} value="sedang">SEDANG</option>
-                                                <option {if $search.kategori|default:'' eq 'berat'}selected{/if} value="berat">BERAT</option>
-                                                <option {if $search.kategori|default:'' eq 'tidak'}selected{/if} value="tidak">TIDAK ANEMIA</option>
-                                            </select>
+                                            <input type="text" name="nama_kegiatan" class="form-control" id="nama_kegiatan" placeholder="-- semua --" value="{$search.nama_kegiatan|default:''}">
                                         </div>
                                     </div>
                                 </div>
@@ -51,9 +46,9 @@
             <!-- end of notification template-->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Tabel Data Tips</h3>
+                    <h3 class="box-title">Tabel Data kegiatan</h3>
                     <div class="box-tools">
-                        <a class="btn btn-sm btn-success" href="{$config->site_url('tes/solusi/add')}"><i class="fa fa-plus"></i>&nbsp; Tambah Data</a>
+                        <a class="btn btn-sm btn-success" href="{$config->site_url('tentang/kegiatan/add')}"><i class="fa fa-plus"></i>&nbsp; Tambah Data</a>
                     </div>
                 </div>
                 <!-- /.box-header -->
@@ -62,20 +57,20 @@
                         <tbody>
                             <tr>
                                 <th width="5%">No.</th>
-                                <th width="35%">Isi Pakar</th>
-                                <th width="35%">Isi Pasien</th>
-                                <th width="10%">Kategori</th>
+                                <th width="*">Nama Kegiatan</th>
+                                <th width="15%">Tempat</th>
+                                <th width="10%">Tanggal</th>
                                 <th width="13%">Action</th>
                             </tr>
                             {foreach $rs_id as $result}
                             <tr>
                                 <td  align="center">{$no++}.</td>
-                                <td>{$result.isi_pakar}</td>
-                                <td>{$result.isi_pasien}</td>
-                                <td>{$result.kategori}</td>
+                                <td>{$result.nama_kegiatan}</td>
+                                <td>{$result.tempat}</td>
+                                <td>{$result.tanggal}</td>
                                 <td>
-                                    <a href="{$config->site_url('tes/solusi/edit')}/{$result.id_tips}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>&nbsp; Edit</a>
-                                    <a href="{$config->site_url('tes/solusi/delete')}/{$result.id_tips}" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i>&nbsp; Hapus</a>
+                                    <a href="{$config->site_url('tentang/kegiatan/edit')}/{$result.id_kegiatan}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>&nbsp; Edit</a>
+                                    <a href="{$config->site_url('tentang/kegiatan/delete')}/{$result.id_kegiatan}" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i>&nbsp; Hapus</a>
                                 </td>
                             </tr>
                             {/foreach}

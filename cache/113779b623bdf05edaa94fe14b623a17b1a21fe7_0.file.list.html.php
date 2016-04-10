@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30-dev/44, created on 2016-04-10 14:58:27
-  from "C:\xampp\htdocs\si_ibuhamil\application\views\tes\solusi\list.html" */
+/* Smarty version 3.1.30-dev/44, created on 2016-04-10 09:01:54
+  from "C:\xampp\htdocs\si_ibuhamil\application\views\tentang\kegiatan\list.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_570a4df3626801_41725027',
+  'unifunc' => 'content_5709fa6235faa7_45611705',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '0f50e9493a7aad6f6b3fef74a628b6ba1922fbef' => 
+    '113779b623bdf05edaa94fe14b623a17b1a21fe7' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\tes\\solusi\\list.html',
-      1 => 1460293077,
+      0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\tentang\\kegiatan\\list.html',
+      1 => 1460271698,
       2 => 'file',
     ),
   ),
@@ -21,15 +21,16 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:base/templates/notification.html' => 1,
   ),
 ),false)) {
-function content_570a4df3626801_41725027 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5709fa6235faa7_45611705 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
+
 <section class="content-header">
     <h1>
-        Data Tips
+        Data Kegiatan
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-database"></i> Tes</a></li>
-        <li class="active">Tips</li>
+        <li><a href="#"><i class="fa fa-database"></i> Tentang</a></li>
+        <li class="active">Kegiatan</li>
     </ol>
 </section>
 <section class="content">
@@ -40,21 +41,16 @@ function content_570a4df3626801_41725027 (Smarty_Internal_Template $_smarty_tpl)
                     <h3 class="box-title"><i class="fa fa-search"></i>&nbsp; Pencarian</h3>
                 </div>
                 <div class="box-body">
-                    <form action="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tes/solusi/search_process');?>
+                    <form action="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/kegiatan/search_process');?>
 " method="post" class="form-horizontal">
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label for="kategori" class="col-sm-3 control-label">Kategori</label>
+                                        <label for="nama_kegiatan" class="col-sm-3 control-label">Nama kegiatan</label>
                                         <div class="col-sm-7">
-                                            <select name="kategori" class="form-control">
-                                                <option value="">-- semua --</option>
-                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['kategori'])===null||$tmp==='' ? '' : $tmp) == 'ringan') {?>selected<?php }?> value="ringan">RINGAN</option>
-                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['kategori'])===null||$tmp==='' ? '' : $tmp) == 'sedang') {?>selected<?php }?> value="sedang">SEDANG</option>
-                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['kategori'])===null||$tmp==='' ? '' : $tmp) == 'berat') {?>selected<?php }?> value="berat">BERAT</option>
-                                                <option <?php if ((($tmp = @$_smarty_tpl->tpl_vars['search']->value['kategori'])===null||$tmp==='' ? '' : $tmp) == 'tidak') {?>selected<?php }?> value="tidak">TIDAK ANEMIA</option>
-                                            </select>
+                                            <input type="text" name="nama_kegiatan" class="form-control" id="nama_kegiatan" placeholder="-- semua --" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['search']->value['nama_kegiatan'])===null||$tmp==='' ? '' : $tmp);?>
+">
                                         </div>
                                     </div>
                                 </div>
@@ -79,9 +75,9 @@ function content_570a4df3626801_41725027 (Smarty_Internal_Template $_smarty_tpl)
             <!-- end of notification template-->
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Tabel Data Tips</h3>
+                    <h3 class="box-title">Tabel Data kegiatan</h3>
                     <div class="box-tools">
-                        <a class="btn btn-sm btn-success" href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tes/solusi/add');?>
+                        <a class="btn btn-sm btn-success" href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/kegiatan/add');?>
 "><i class="fa fa-plus"></i>&nbsp; Tambah Data</a>
                     </div>
                 </div>
@@ -91,9 +87,9 @@ function content_570a4df3626801_41725027 (Smarty_Internal_Template $_smarty_tpl)
                         <tbody>
                             <tr>
                                 <th width="5%">No.</th>
-                                <th width="35%">Isi Pakar</th>
-                                <th width="35%">Isi Pasien</th>
-                                <th width="10%">Kategori</th>
+                                <th width="*">Nama Kegiatan</th>
+                                <th width="15%">Tempat</th>
+                                <th width="10%">Tanggal</th>
                                 <th width="13%">Action</th>
                             </tr>
                             <?php
@@ -105,18 +101,18 @@ $__foreach_result_0_saved = $_smarty_tpl->tpl_vars['result'];
                             <tr>
                                 <td  align="center"><?php echo $_smarty_tpl->tpl_vars['no']->value++;?>
 .</td>
-                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['isi_pakar'];?>
+                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['nama_kegiatan'];?>
 </td>
-                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['isi_pasien'];?>
+                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['tempat'];?>
 </td>
-                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['kategori'];?>
+                                <td><?php echo $_smarty_tpl->tpl_vars['result']->value['tanggal'];?>
 </td>
                                 <td>
-                                    <a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tes/solusi/edit');?>
-/<?php echo $_smarty_tpl->tpl_vars['result']->value['id_tips'];?>
+                                    <a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/kegiatan/edit');?>
+/<?php echo $_smarty_tpl->tpl_vars['result']->value['id_kegiatan'];?>
 " class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>&nbsp; Edit</a>
-                                    <a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tes/solusi/delete');?>
-/<?php echo $_smarty_tpl->tpl_vars['result']->value['id_tips'];?>
+                                    <a href="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('tentang/kegiatan/delete');?>
+/<?php echo $_smarty_tpl->tpl_vars['result']->value['id_kegiatan'];?>
 " class="btn btn-xs btn-danger"><i class="fa fa-minus"></i>&nbsp; Hapus</a>
                                 </td>
                             </tr>

@@ -1,11 +1,10 @@
-
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class m_karyawan extends CI_Model{
+class m_kegiatan extends CI_Model{
 
-    function get_list_karyawan($params){
-        $sql = "SELECT * FROM karyawan WHERE nama_karyawan LIKE ? LIMIT ?,?";
+    function get_list_kegiatan($params){
+        $sql = "SELECT * FROM kegiatan WHERE nama_kegiatan LIKE ? LIMIT ?,?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->result_array();
@@ -16,8 +15,8 @@ class m_karyawan extends CI_Model{
         }
     }
 
-    function get_total_karyawan($params){
-        $sql = "SELECT COUNT(*) as 'total' FROM karyawan WHERE nama_karyawan LIKE ?";
+    function get_total_kegiatan($params){
+        $sql = "SELECT COUNT(*) as 'total' FROM kegiatan WHERE nama_kegiatan LIKE ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
@@ -28,8 +27,8 @@ class m_karyawan extends CI_Model{
         }
     }
 
-    function get_karyawan_by_id($params){
-        $sql = "SELECT * FROM karyawan WHERE id_karyawan = ?";
+    function get_kegiatan_by_id($params){
+        $sql = "SELECT * FROM kegiatan WHERE id_kegiatan = ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
@@ -40,16 +39,16 @@ class m_karyawan extends CI_Model{
         }
     }
 
-    function insert_karyawan($params){
-        return $this->db->insert('karyawan', $params);
+    function insert_kegiatan($params){
+        return $this->db->insert('kegiatan', $params);
     }
 
-    function update_karyawan($params, $update){
-        return $this->db->update('karyawan', $params, $update);
+    function update_kegiatan($params, $update){
+        return $this->db->update('kegiatan', $params, $update);
     }
 
-    function delete_karyawan($params){
-        $sql = "DELETE FROM karyawan WHERE id_karyawan = ?";
+    function delete_kegiatan($params){
+        $sql = "DELETE FROM kegiatan WHERE id_kegiatan = ?";
         return $this->db->query($sql, $params);
     }
 

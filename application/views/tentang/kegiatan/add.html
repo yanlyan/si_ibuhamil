@@ -1,0 +1,56 @@
+<section class="content-header">
+    <h1>
+        Data Kegiatan
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Tentang </a></li>
+        <li><a href="#">Kegiatan</a></li>
+        <li class="active">Tambah Data</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tambah Data Kegiatan</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="{$config->site_url('tentang/kegiatan/add_process')}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="nama_kegiatan" class="col-sm-2 control-label">nama kegiatan</label>
+                            <div class="col-sm-7">
+                                <input type="text" name="nama_kegiatan" class="form-control" id="nama_kegiatan" placeholder="nama_kegiatan" value="{$result.nama_kegiatan|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tempat" class="col-sm-2 control-label">Tempat</label>
+                            <div class="col-sm-5">
+                                <input type="text" name="tempat" class="form-control" id="tempat" placeholder="tempat" value="{$result.tempat|default:''}">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tanggal" class="col-sm-2 control-label">Tanggal</label>
+                            <div class="col-sm-5">
+                                <textarea name="tanggal" class="form-control" rows="5" cols="40">{$result.tanggal|default:''}</textarea>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="{$config->site_url('tentang/kegiatan/')}"><i class="fa fa-long-arrow-left"></i>&nbsp; Batal</a>
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
