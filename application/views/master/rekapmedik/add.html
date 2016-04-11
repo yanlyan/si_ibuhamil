@@ -1,0 +1,119 @@
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    $('#anamnese-s, #anamnese-o, #anamnese-a, #anamnese-p, #diagnosis, #tindakan').summernote({
+        height: 100,                 // set editor height
+        minHeight: null,             // set minimum height of editor
+        maxHeight: null,             // set maximum height of editor
+        focus: true
+    });
+    $('#tgl_periksa').datetimepicker({
+        'format': 'YYYY-MM-DD H:I',
+        'ignoreReadonly': true
+    });
+});
+
+</script>
+<section class="content-header">
+    <h1>
+        Data Rekap Medik
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Master</a></li>
+        <li><a href="#">Rekap Medik</a></li>
+        <li class="active">Tambah Data</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tambah Data Rekap Medik</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="{$config->site_url('master/rekapmedik/add_process')}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="no_rm" class="col-sm-2 control-label">No. RM.</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="no_rm" class="form-control" id="no_rm" value="{$result.id_rekapmedik|default:''}" disabled="disabled">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pasien" class="col-sm-2 control-label">Pasien</label>
+                            <div class="col-sm-2">
+                                <select name="pasien" class="form-control" id="pasien">
+                                    {foreach $rs_pasien as $pasien}
+                                    <option value="{$pasien.id_pasien}">{$pasien.pasien_nm}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="anamnese-s" class="col-sm-2 control-label">Anamnese / PX Fisik</label>
+                            <div class="col-sm-5">
+                                <label class="control-label">S</label>
+                                <textarea name="anamnese[s]" class="form-control" id="anamnese-s">{$result.anamnese_pxfisik['s']|default:''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="anamnese-o" class="col-sm-2 control-label"></label>
+                            <div class="col-sm-5">
+                                <label class="control-label">O</label>
+                                <textarea name="anamnese[o]" class="form-control" id="anamnese-o">{$result.anamnese_pxfisik['o']|default:''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="anamnese-a" class="col-sm-2 control-label"></label>
+                            <div class="col-sm-5">
+                                <label class="control-label">A</label>
+                                <textarea name="anamnese[a]" class="form-control" id="anamnese-a">{$result.anamnese_pxfisik['a']|default:''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="anamnese-p" class="col-sm-2 control-label"></label>
+                            <div class="col-sm-5">
+                                <label class="control-label">P</label>
+                                <textarea name="anamnese[p]" class="form-control" id="anamnese-p">{$result.anamnese_pxfisik['p']|default:''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="diagnosis" class="col-sm-2 control-label">Diagnosis</label>
+                            <div class="col-sm-5">
+                                <textarea name="diagnosis" class="form-control" id="diagnosis">{$result.diagnosis|default:''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="icd" class="col-sm-2 control-label">ICD</label>
+                            <div class="col-sm-6">
+                                <input type="text" name="icd" class="form-control" id="icd" placeholder="ICD" value="{$result.icd|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tindakan" class="col-sm-2 control-label">Terapi / Tindakan</label>
+                            <div class="col-sm-5">
+                                <textarea name="tindakan" class="form-control" id="diagnosis">{$result.terapi_tindakan|default:''}</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tgl_periksa" class="col-sm-2 control-label">Tanggal Periksa</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="tgl_periksa" class="form-control" id="tgl_periksa" placeholder="Tanggal Periksa" value="{$result.tgl_periksa|default:''|date_format:'%y-%m-%d %H:%M'}">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="{$config->site_url('master/rekapmedik/')}"><i class="fa fa-long-arrow-left"></i>&nbsp; Batal</a>
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
