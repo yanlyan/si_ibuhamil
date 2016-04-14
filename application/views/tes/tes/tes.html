@@ -1,0 +1,88 @@
+<script type="text/javascript">
+jQuery(document).ready(function($) {
+    if ($(".pagination li").last().hasClass('active')) {
+        $('.btn-next').html("Simpan");
+        $('.btn-next').html("Simpan");
+    }
+});
+</script>
+<style media="screen">
+.pertanyaan{
+    margin-bottom: 15px;
+}
+.pertanyaan span{
+    font-size: 16px;
+}
+</style>
+<section class="content-header">
+    <h1>
+        Lakukan Tes
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-ambulance"></i> Tes HB</a></li>
+        <li><a href="{$config->site_url('tes/tes/')}"> List Pasien</a></li>
+        <li class="active">Pertanyaan</li>
+    </ol>
+</section>
+<section class="content ">
+    <div class="row">
+        <div class="col-md-12" style="margin-bottom:15px;">
+            {$pagination.data|default:''}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <!-- Widget: user widget style 1 -->
+            <div class="box box-widget widget-user-2">
+                <!-- Add the bg color to the header using any of the bg-* classes -->
+                <div class="widget-user-header bg-yellow">
+                    {* <div class="widget-user-image">
+                    <img class="img-circle" src="../dist/img/user7-128x128.jpg" alt="User Avatar">
+                </div> *}
+                <!-- /.widget-user-image -->
+                <h3 class="widget-user-username">{$pasien.pasien_nm}</h3>
+                <h5 class="widget-user-desc">{$pasien.pasien_pekerjaan}</h5>
+            </div>
+            <div class="box-footer no-padding">
+                <ul class="nav nav-stacked">
+                    <li><a href="#">Tingkat HB terakhir <span class="pull-right badge bg-blue">31</span></a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /.widget-user -->
+    </div>
+    <div class="col-md-8">
+        <div class="box box-success">
+            <div class="box-header with-border">
+                <h3 class="box-title">Pertanyaan No. {$no} - {$end}</h3>
+            </div>
+            <form action="{$config->site_url('tes/tes/process_tes')}" method="post">
+                <input type="hidden" id="redirect" name="redirect" value="{$config->site_url('tes/tes/tes')}/{$pasien.id_pasien}/index/{$end}">
+                <input type="hidden" name="is_end" value="false">
+                <div class="box-body">
+                    {foreach $rs_pertanyaan as $key => $pertanyaan}
+                    <div class="row pertanyaan">
+                        <div class="col-md-12">
+                            <span><b>{$no++}. </b>{$pertanyaan.nama_konsul}</span>
+                            <input type="hidden" name="pertanyaan[]" value="{$pertanyaan.id_konsul}">
+                        </div>
+                        <div class="col-md-12 jawaban">
+                            <label class="radio-inline">
+                                <input type="radio" {if $jawaban[$pertanyaan.id_konsul]|default:'-1' eq 1}checked{/if} name="jawaban[{$pertanyaan.id_konsul}]" id="inlineRadio1" value="1"> Ya
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" {if $jawaban[$pertanyaan.id_konsul]|default:'-1' eq 0}checked{/if} name="jawaban[{$pertanyaan.id_konsul}]" id="inlineRadio2" value="0"> Tidak
+                            </label>
+                        </div>
+                    </div>
+                    {/foreach}
+                </div>
+                <div class="box-footer">
+                    <button class="btn btn-success pull-right btn-next">Selanjutnya &rsaquo;&rsaquo;</button>
+                </div>
+            </form>
+            <!-- /.box-body -->
+        </div>
+    </div>
+</div>
+</section>

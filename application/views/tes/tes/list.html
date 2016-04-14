@@ -1,9 +1,9 @@
 <section class="content-header">
     <h1>
-        Data Pasien
+        Lakukan Tes HB
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-database"></i> Master</a></li>
+        <li><a href="#"><i class="fa fa-ambulance"></i> Tes HB</a></li>
         <li class="active">Pasien</li>
     </ol>
 </section>
@@ -39,16 +39,12 @@
     </div>
     <div class="row">
         <div class="col-md-12">
-
             <!-- notification template -->
             {include file="base/templates/notification.html"}
             <!-- end of notification template-->
             <div class="box">
                 <div class="box-header with-border">
                     <h3 class="box-title">Tabel Data Pasien</h3>
-                    <div class="box-tools">
-                        <a class="btn btn-sm btn-success" href="{$config->site_url('master/pasien/add')}"><i class="fa fa-plus"></i>&nbsp; Tambah Data</a>
-                    </div>
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
@@ -56,24 +52,18 @@
                         <tbody>
                             <tr>
                                 <th width="5%">No.</th>
-                                <th width="*">Nama Pasien</th>
                                 <th width="20%">No. Identitas</th>
-                                <th width="15%">Tanggal Lahir</th>
-                                <th width="15%">Alamat</th>
-                                <th width="15%">Pekerjaan</th>
-                                <th width="13%">Action</th>
+                                <th width="*">Nama Pasien</th>
+                                <th width="20%">Action</th>
                             </tr>
                             {foreach $rs_id as $result}
                             <tr>
-                                <td  align="center">{$no++}.</td>
-                                <td>{$result.pasien_nm}</td>
+                                <td align="center">{$no++}.</td>
                                 <td>{$result.no_identitas}</td>
-                                <td>{$dtm->get_full_date($result.tanggal_lahir)}</td>
-                                <td>{$result.pasien_alamat}</td>
-                                <td>{$result.pasien_pekerjaan}</td>
-                                <td>
-                                    <a href="{$config->site_url('master/pasien/edit')}/{$result.id_pasien}" class="btn btn-xs btn-primary"><i class="fa fa-edit"></i>&nbsp; Edit</a>
-                                    <a href="{$config->site_url('master/pasien/delete')}/{$result.id_pasien}" class="btn btn-xs btn-danger"><i class="fa fa-minus"></i>&nbsp; Hapus</a>
+                                <td>{$result.pasien_nm}</td>
+                                <td align="center">
+                                    <a href="{$config->site_url('tes/tes/tes')}/{$result.id_pasien}" class="btn btn-xs btn-success"><i class="fa fa-edit"></i>&nbsp; Lakukan Tes</a>
+                                    <a href="{$config->site_url('tes/tes/graph')}/{$result.id_pasien}" class="btn btn-xs btn-primary"><i class="fa fa-bar-chart-o"></i>&nbsp; Grafik</a>
                                 </td>
                             </tr>
                             {/foreach}
