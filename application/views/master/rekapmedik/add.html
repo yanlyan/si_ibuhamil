@@ -102,7 +102,7 @@ jQuery(document).ready(function($) {
                         <div class="form-group">
                             <label for="tgl_periksa" class="col-sm-2 control-label">Tanggal Periksa</label>
                             <div class="col-sm-2">
-                                <input type="text" name="tgl_periksa" class="form-control" id="tgl_periksa" placeholder="Tanggal Periksa" value="{$result.tgl_periksa|default:''|date_format:'%y-%m-%d %H:%M'}">
+                                <input type="text" name="tgl_periksa" class="form-control" id="tgl_periksa" placeholder="Tanggal Periksa" value="{$result.tgl_periksa|default:$|date_format:'%y-%m-%d %H:%M}'>
                             </div>
                         </div>
                     </div>

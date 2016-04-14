@@ -3,8 +3,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class m_user extends CI_Model{
 
-    function get_list_user($params){
-        $sql = "SELECT * FROM user WHERE user_nm LIKE ? LIMIT ?,?";
+    function get_list_com_user($params){
+        $sql = "SELECT * FROM com_user WHERE user_name LIKE ? LIMIT ?,?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->result_array();
@@ -15,8 +15,8 @@ class m_user extends CI_Model{
         }
     }
 
-    function get_total_user($params){
-        $sql = "SELECT COUNT(*) as 'total' FROM user WHERE user_nm LIKE ?";
+    function get_total_com_user($params){
+        $sql = "SELECT COUNT(*) as 'total' FROM com_user WHERE user_name LIKE ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
@@ -27,8 +27,8 @@ class m_user extends CI_Model{
         }
     }
 
-    function get_user_by_id($params){
-        $sql = "SELECT * FROM user WHERE id_user = ?";
+    function get_com_user_by_user($params){
+        $sql = "SELECT * FROM com_user WHERE user_id = ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
@@ -39,16 +39,16 @@ class m_user extends CI_Model{
         }
     }
 
-    function insert_user($params){
-        return $this->db->insert('user', $params);
+    function insert_com_user($params){
+        return $this->db->insert('com_user', $params);
     }
 
-    function update_user($params, $update){
-        return $this->db->update('user', $params, $update);
+    function update_com_user($params, $update){
+        return $this->db->update('com_user', $params, $update);
     }
 
-    function delete_user($params){
-        $sql = "DELETE FROM user WHERE id_user = ?";
+    function delete_com_user($params){
+        $sql = "DELETE FROM com_user WHERE user_id = ?";
         return $this->db->query($sql, $params);
     }
 

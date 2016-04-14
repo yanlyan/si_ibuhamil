@@ -82,6 +82,11 @@ class pasien extends ApplicationBase{
         $this->_set_page_rule("C");
         // set template content
         $this->smarty->assign("template_content", "master/pasien/add.html");
+        // load js
+        $this->smarty->load_javascript('datetimepicker/moment.js');
+        $this->smarty->load_javascript('datetimepicker/bootstrap-datetimepicker.js');
+        // load css
+        $this->smarty->load_style('datetimepicker/bootstrap-datetimepicker.css');
         // notification
         $this->tnotification->display_notification();
         $this->tnotification->display_last_field();
@@ -128,6 +133,11 @@ class pasien extends ApplicationBase{
         $this->_set_page_rule("U");
         // set template content
         $this->smarty->assign("template_content", "master/pasien/edit.html");
+        // load js
+        $this->smarty->load_javascript('datetimepicker/moment.js');
+        $this->smarty->load_javascript('datetimepicker/bootstrap-datetimepicker.js');
+        // load css
+        $this->smarty->load_style('datetimepicker/bootstrap-datetimepicker.css');
         // get data
         $result = $this->m_pasien->get_pasien_by_id($id_pasien);
         // assign variable

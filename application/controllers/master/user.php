@@ -21,15 +21,15 @@ class user extends ApplicationBase{
         // set template content
         $this->smarty->assign("template_content", "master/user/list.html");
         // session
-        $search = $this->tsession->userdata('search_user');
+        $search = $this->tsession->userdata('search_com_user');
         $this->smarty->assign('search', $search);
         // parameter
-        $user_nm = !empty($search['user_nm']) ? "%" . $search['user_nm'] . "%" : "%";
-        $params_search = array($user_nm);
+        $user_name = !empty($search['user_name']) ? "%" . $search['user_name'] . "%" : "%";
+        $params_search = array($user_name);
 
         // pagination
         $config['base_url'] = site_url("master/user/index/");
-        $config['total_rows'] = $this->m_user->get_total_user($params_search);
+        $config['total_rows'] = $this->m_user->get_total_com_user($params_search);
 
         $config['uri_segment'] = 4;
         $config['per_page'] = 10;
@@ -49,9 +49,9 @@ class user extends ApplicationBase{
         $this->smarty->assign("no", $start);
 
         // /* end of pagination ---------------------- */
-        $params = array($user_nm, ($start - 1), $config['per_page']);
+        $params = array($user_name, ($start - 1), $config['per_page']);
         // get data
-        $this->smarty->assign("rs_id", $this->m_user->get_list_user($params));
+        $this->smarty->assign("rs_id", $this->m_user->get_list_com_user($params));
         // notification
         $this->tnotification->display_notification();
         $this->tnotification->display_last_field();
@@ -65,13 +65,13 @@ class user extends ApplicationBase{
         //--
         if ($this->input->post('save') == 'Cari') {
             $params = array(
-                "user_nm" => $this->input->post('user_nm'),
+                "user_name" => $this->input->post('user_name'),
             );
             // set
-            $this->tsession->set_userdata('search_user', $params);
+            $this->tsession->set_userdata('search_com_user', $params);
         } else {
             // unset
-            $this->tsession->unset_userdata('search_user');
+            $this->tsession->unset_userdata('search_com_user');
         }
         //--
         redirect('master/user');
@@ -82,6 +82,11 @@ class user extends ApplicationBase{
         $this->_set_page_rule("C");
         // set template content
         $this->smarty->assign("template_content", "master/user/add.html");
+        // load js
+        $this->smarty->load_javascript('datetimepicker/moment.js');
+        $this->smarty->load_javascript('datetimepicker/bootstrap-datetimepicker.js');
+        // load css
+        $this->smarty->load_style('datetimepicker/bootstrap-datetimepicker.css');
         // notification
         $this->tnotification->display_notification();
         $this->tnotification->display_last_field();
@@ -92,25 +97,23 @@ class user extends ApplicationBase{
     function add_process(){
         // set page rules
         $this->_set_page_rule("C");
-        $this->tnotification->set_rules('user_nm', 'Nama user', 'trim|required');
-        $this->tnotification->set_rules('no_identitas', 'No. Identitas', 'trim|required');
-        $this->tnotification->set_rules('user_alamat', 'Alamat', 'trim');
-        $this->tnotification->set_rules('user_pekerjaan', 'Pekerjaan', 'trim');
-        $this->tnotification->set_rules('no_telepon', 'No Telepon', 'trim');
-        $this->tnotification->set_rules('tanggal_lahir', 'Tanggal Lahir', 'trim');
+        $this->tnotification->set_rules('user_name', 'Nama user', 'trim|required');
+        $this->tnotification->set_rules('user_pass', 'Sandi user', 'trim|required');
+        $this->tnotification->set_rules('user_mail', 'Email user', 'trim|required');
+        $this->tnotification->set_rules('user_st', 'status user', 'trim|required');
+
 
         if ($this->tnotification->run() !== FALSE) {
 
             $params_insert = array(
-                'user_nm' => $this->input->post('user_nm'),
-                'no_identitas' => $this->input->post('no_identitas'),
-                'user_alamat' => $this->input->post('user_alamat'),
-                'user_pekerjaan' => $this->input->post('user_pekerjaan'),
-                'no_telepon' => $this->input->post('no_telepon'),
-                'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+                'user_name' => $this->input->post('user_name'),
+                'user_pass' => $this->input->post('user_pass'),
+                'user_mail' => $this->input->post('user_mail'),
+                'user_st' => $this->input->post('user_st'),
+
             );
 
-            if ($this->m_user->insert_user($params_insert)) {
+            if ($this->m_user->insert_com_user($params_insert)) {
                 // notification
                 $this->tnotification->delete_last_field();
                 $this->tnotification->sent_notification("success", "Data berhasil disimpan");
@@ -125,13 +128,18 @@ class user extends ApplicationBase{
         redirect('master/user/add');
     }
 
-    function edit($id_user){
+    function edit($user_id){
         // set page rules
         $this->_set_page_rule("U");
         // set template content
         $this->smarty->assign("template_content", "master/user/edit.html");
+        // load js
+        $this->smarty->load_javascript('datetimepicker/moment.js');
+        $this->smarty->load_javascript('datetimepicker/bootstrap-datetimepicker.js');
+        // load css
+        $this->smarty->load_style('datetimepicker/bootstrap-datetimepicker.css');
         // get data
-        $result = $this->m_user->get_user_by_id($id_user);
+        $result = $this->m_user->get_com_user_by_user($user_id);
         // assign variable
         $this->smarty->assign('result',$result);
         // notification
@@ -145,30 +153,26 @@ class user extends ApplicationBase{
         // set page rules
         $this->_set_page_rule("U");
         // input validation
-        $this->tnotification->set_rules('id_user', 'ID pasien', 'trim|required');
-        $this->tnotification->set_rules('user_nm', 'Nama Pasien', 'trim|required');
-        $this->tnotification->set_rules('no_identitas', 'No. Identitas', 'trim|required');
-        $this->tnotification->set_rules('user_alamat', 'Alamat', 'trim');
-        $this->tnotification->set_rules('user_pekerjaan', 'Pekerjaan', 'trim');
-        $this->tnotification->set_rules('no_telepon', 'No Telepon', 'trim');
-        $this->tnotification->set_rules('tanggal_lahir', 'Tanggal Lahir', 'trim');
+        $this->tnotification->set_rules('user_name', 'Nama user', 'trim|required');
+        $this->tnotification->set_rules('user_pass', 'Sandi user', 'trim|required');
+        $this->tnotification->set_rules('user_mail', 'Email user', 'trim|required');
+        $this->tnotification->set_rules('user_st', 'status user', 'trim|required');
+
 
         if ($this->tnotification->run() !== FALSE) {
 
             $params_update = array(
-                'user_nm' => $this->input->post('user_nm'),
-                'no_identitas' => $this->input->post('no_identitas'),
-                'user_alamat' => $this->input->post('alamat'),
-                'user_pekerjaan' => $this->input->post('pekerjaan'),
-                'no_telepon' => $this->input->post('no_telepon'),
-                'tanggal_lahir' => $this->input->post('tanggal_lahir'),
+                'user_name' => $this->input->post('user_name'),
+                'user_pass' => $this->input->post('user_pass'),
+                'user_mail' => $this->input->post('user_mail'),
+                'user_st' => $this->input->post('user_st'),
             );
 
             $where = array(
-                'id_user' => $this->input->post('id_user')
+                'user_id' => $this->input->post('user_id')
             );
 
-            if ($this->m_user->update_user($params_update, $where)) {
+            if ($this->m_user->update_com_user($params_update, $where)) {
                 // notification
                 $this->tnotification->delete_last_field();
                 $this->tnotification->sent_notification("success", "Data berhasil disimpan");
@@ -180,12 +184,12 @@ class user extends ApplicationBase{
             // default error
             $this->tnotification->sent_notification("error", "Data gagal disimpan");
         }
-        redirect('master/user/edit/'.$this->input->post('id_user'));
+        redirect('master/user/edit/'.$this->input->post('user_id'));
     }
 
-    function delete($id_user){
+    function delete($user_id){
         $this->_set_page_rule("D");
-        if ($this->m_user->delete_user($id_user)) {
+        if ($this->m_user->delete_com_user($user_id)) {
             // notification
             $this->tnotification->delete_last_field();
             $this->tnotification->sent_notification("success", "Data berhasil dihapus");

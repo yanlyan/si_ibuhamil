@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30-dev/44, created on 2016-04-12 04:15:18
-  from "C:\xampp\htdocs\si_ibuhamil\application\views\master\pasien\add.html" */
+/* Smarty version 3.1.30-dev/44, created on 2016-04-12 04:19:27
+  from "C:\xampp\htdocs\si_ibuhamil\application\views\master\pasien\edit.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_570c5a36b3d807_84362051',
+  'unifunc' => 'content_570c5b2fba0298_61398512',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
-    '789650177509f9b313cbef6e31a2b483d575c149' => 
+    '1f6aee3b0c48ad1090d77af65b9317d1a8511be2' => 
     array (
-      0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\master\\pasien\\add.html',
-      1 => 1460427294,
+      0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\master\\pasien\\edit.html',
+      1 => 1460427525,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:base/templates/notification.html' => 1,
   ),
 ),false)) {
-function content_570c5a36b3d807_84362051 (Smarty_Internal_Template $_smarty_tpl) {
+function content_570c5b2fba0298_61398512 (Smarty_Internal_Template $_smarty_tpl) {
 echo '<script'; ?>
  type="text/javascript">
 jQuery(document).ready(function($) {
@@ -41,7 +41,7 @@ jQuery(document).ready(function($) {
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-database"></i> Master</a></li>
         <li><a href="#">Pasien</a></li>
-        <li class="active">Tambah Data</li>
+        <li class="active">Edit</li>
     </ol>
 </section>
 <section class="content">
@@ -54,12 +54,14 @@ jQuery(document).ready(function($) {
             <!-- end of notification template-->
             <div class="box box-info">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Tambah Data Pasien</h3>
+                    <h3 class="box-title">Edit Data Pasien</h3>
                 </div>
                 <!-- /.box-header -->
                 <!-- form start -->
-                <form action="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('master/pasien/add_process');?>
+                <form action="<?php echo $_smarty_tpl->tpl_vars['config']->value->site_url('master/pasien/edit_process');?>
 " method="post" class="form-horizontal">
+                    <input type="hidden" name="id_pasien" value="<?php echo (($tmp = @$_smarty_tpl->tpl_vars['result']->value['id_pasien'])===null||$tmp==='' ? '' : $tmp);?>
+">
                     <div class="box-body">
                         <div class="form-group">
                             <label for="pasien_nm" class="col-sm-2 control-label">Nama Pasien</label>
