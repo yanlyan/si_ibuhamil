@@ -1,0 +1,331 @@
+<section class="content-header">
+    <h1>
+        Data Riwayat Kehamilan
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Data Ibu</a></li>
+        <li><a href="#">Riwayat Kehamilan</a></li>
+        <li class="active">Tambah Data</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tambah Data Riwayat Kehamilan</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="{$config->site_url('dataibu/riwayatkehamilan/add_process')}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="pasien" class="col-sm-2 control-label">Pasien</label>
+                            <div class="col-sm-2">
+                                <select name="pasien" class="form-control" id="pasien">
+                                    {foreach $rs_pasien as $pasien}
+                                    <option value="{$pasien.id_pasien}">{$pasien.pasien_nm}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="hamil_ke" class="col-sm-2 control-label">Hamil Ke-</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="hamil_ke" class="form-control" id="hamil_ke">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="haid" class="col-sm-2 control-label">Haid</label>
+                            <div class="col-sm-2">
+                                <select name="haid" class="form-control" id="haid">
+                                    <option value="teratur">Teratur</option>
+                                    <option value="tidak">Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bb-sebelum" class="col-sm-2 control-label">BB Sebelum Hamil</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="bb-sebelum" id="bb-sebelum" class="form-control" value="{$result.bb_sebelum|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mual_muntah" class="col-sm-2 control-label">Mual/Muntah</label>
+                            <div class="col-sm-2">
+                                <select name="mual_muntah" class="form-control" id="mual_muntah">
+                                    <option value="tidak">Tidak</option>
+                                    <option value="kadang">Kadang</option>
+                                    <option value="terus-menerus">Terus Menerus</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pusing" class="col-sm-2 control-label">Pusing</label>
+                            <div class="col-sm-2">
+                                <select name="pusing" class="form-control" id="pusing">
+                                    <option value="tidak">Tidak</option>
+                                    <option value="kadang">Kadang</option>
+                                    <option value="terus-menerus">Terus Menerus</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nyeri_perut" class="col-sm-2 control-label">Nyeri Perut</label>
+                            <div class="col-sm-2">
+                                <select name="nyeri_perut" class="form-control" id="nyeri_perut">
+                                    <option value="ada">Ada</option>
+                                    <option value="tidak">Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gerak_janin" class="col-sm-2 control-label">Gerakan Janin</label>
+                            <div class="col-sm-2">
+                                <select name="gerak_janin" class="form-control" id="gerak_janin">
+                                    <option value="aktif">Aktif</option>
+                                    <option value="jarang">Jarang</option>
+                                    <option value="tidak ada">Tidak Ada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nafsu_makan" class="col-sm-2 control-label">Nafsu Makan</label>
+                            <div class="col-sm-2">
+                                <select name="nafsu_makan" class="form-control" id="nafsu_makan">
+                                    <option value="baik">Baik</option>
+                                    <option value="menurun">Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pendarahan" class="col-sm-2 control-label">Pendarahan</label>
+                            <div class="col-sm-2">
+                                <select name="pendarahan" class="form-control" id="pendarahan">
+                                    <option value="tidak ada">Tidak Ada</option>
+                                    <option value="ada">Ada</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="penyakit_diderita" class="col-sm-2 control-label">penyakit_diderita</label>
+                            <div class="col-sm-2">
+                                <select name="penyakit_diderita" class="form-control" id="penyakit_diderita">
+                                    <option value="paru">paru</option>
+                                    <option value="dm">Dm</option>
+                                    <option value="epilepsi">epilepsi</option>
+                                    <option value="hati">Hati</option>
+                                    <option value="psikosis">Psikosis</option>
+                                    <option value="ginjal">ginjal</option>
+                                    <option value="malaria">malaria</option>
+                                    <option value="jantung">jantung</option>
+                                    <option value="hipertensi">hipertensi</option>
+                                    <option value="asthma">asthma</option>
+                                    <option value="diare lama">Diare lama</option>
+                                    <option value="pms">pms</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="kebiasaan" class="col-sm-2 control-label">Kebiasaan</label>
+                            <div class="col-sm-2">
+                                <select name="kebiasaan" class="form-control" id="kebiasaan">
+                                    <option value="merokok">Merokok</option>
+                                    <option value="minuman keras">Minuman Keras</option>
+                                    <option value="narkotika">Terus Menerus</option>
+                                    <option value="minum jamu">minum jamu</option>
+                                    <option value="pijat perut">pijat perut</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="status_tt" class="col-sm-2 control-label">Status TT</label>
+                            <div class="col-sm-2">
+                                <select name="status_tt" class="form-control" id="status_TT">
+                                    <option value="T0">T0</option>
+                                    <option value="T1">T1</option>
+                                    <option value="T2">T2</option>
+                                    <option value="T3">T3</option>
+                                    <option value="T4">T4</option>
+                                    <option value="T5">T5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="hiv" class="col-sm-2 control-label">Penyakit HIV</label>
+                            <div class="col-sm-2">
+                                <select name="hiv" class="form-control" id="hiv">
+                                    <option value="ada">Ada</option>
+                                    <option value="tidak ada">Tidak Ada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tinggi_badan" class="col-sm-2 control-label">Tinggi badan ibu hamil</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="tinggi_badan" id="tinggi_badan" class="form-control" value="{$result.tinggi_badan|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lila" class="col-sm-2 control-label">LiLa</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="lila" id="lila" class="form-control" value="{$result.lila|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="kesadaran" class="col-sm-2 control-label">Kesadaran</label>
+                            <div class="col-sm-2">
+                                <select name="kesadaran" class="form-control" id="kesadaran">
+                                    <option value="baik">Baik</option>
+                                    <option value="ada gangguan">Ada Gangguan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="muka" class="col-sm-2 control-label">Muka</label>
+                            <div class="col-sm-2">
+                                <select name="muka" class="form-control" id="muka">
+                                    <option value="pucat">Pucat</option>
+                                    <option value="kuning">Kuning</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="kulit" class="col-sm-2 control-label">Kulit</label>
+                            <div class="col-sm-2">
+                                <select name="kulit" class="form-control" id="kulit">
+                                    <option value="ruam kulit">Ruam Kulit</option>
+                                    <option value="herpes">Herpes</option>
+                                    <option value="sarcoma">Sarcoma</option>
+                                    <option value="tatto">Tatto</option>
+                                    <option value="bekas luka">Bekas Luka</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mata" class="col-sm-2 control-label">Mata</label>
+                            <div class="col-sm-2">
+                                <select name="mata" class="form-control" id="mata">
+                                    <option value="normal">Normal</option>
+                                    <option value="oedem palpebra">Oedem palpebra</option>
+                                    <option value="conjungtiva pucat">Conjungtiva pucat</option>
+                                    <option value="icterus">Icterus</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mulut" class="col-sm-2 control-label">Mulut</label>
+                            <div class="col-sm-2">
+                                <select name="mulut" class="form-control" id="mulut">
+                                    <option value="normal">Normal</option>
+                                    <option value="cynosis">Cynosis</option>
+                                    <option value="stomatitis">Stomatitis</option>
+                                    <option value="tonsillitis">Tonsillitis</option>
+                                    <option value="faringitis">Faringitis</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gigi" class="col-sm-2 control-label">Gigi</label>
+                            <div class="col-sm-2">
+                                <select name="gigi" class="form-control" id="gigi">
+                                    <option value="normal">Normal</option>
+                                    <option value="karies">Karies</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pembesaran_kelenjar" class="col-sm-2 control-label">Pembesaran Kelenjar</label>
+                            <div class="col-sm-2">
+                                <select name="pembesaran_kelenjar" class="form-control" id="pembesaran_kelenjar">
+                                    <option value="normal">Normal</option>
+                                    <option value="ketiak">Ketiak</option>
+                                    <option value="lipatan paha">Lipatan Paha</option>
+                                    <option value="tiroid">Tiroid</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dada" class="col-sm-2 control-label">Dada</label>
+                            <div class="col-sm-2">
+                                <select name="dada" class="form-control" id="dada">
+                                    <option value="normal">Normal</option>
+                                    <option value="bentuk dada abnormal">Bentuk Dada Abnormal</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="paru_nafas" class="col-sm-2 control-label">Paru/Nafas</label>
+                            <div class="col-sm-2">
+                                <select name="paru_nafas" class="form-control" id="paru_nafas">
+                                    <option value="normal">Normal</option>
+                                    <option value="sesak">Sesak</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jantung" class="col-sm-2 control-label">Jantung</label>
+                            <div class="col-sm-2">
+                                <select name="jantung" class="form-control" id="jantung">
+                                    <option value="tidak ada keluhan">Tidak Ada Keluhan</option>
+                                    <option value="berdebar-debar">Berdebar-debar</option>
+                                    <option value="mudah sesak napas">Mudah sesak napas</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="payudara" class="col-sm-2 control-label">Payudara</label>
+                            <div class="col-sm-2">
+                                <select name="payudara" class="form-control" id="payudara">
+                                    <option value="normal">Normal</option>
+                                    <option value="kemerahan">Kemerahan</option>
+                                    <option value="benjolan">Benjolan</option>
+                                    <option value="puting susu masuk">Putting Susu Masuk</option>
+                                    <option value="kulit jeruk">Kulit Jeruk</option>
+                                    <option value="keluar cairan">Keluar Cairan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tangan_tungkai" class="col-sm-2 control-label">Tangan_tungkai</label>
+                            <div class="col-sm-2">
+                                <select name="tangan_tungkai" class="form-control" id="tangan_tungkai">
+                                    <option value="normal">Normal</option>
+                                    <option value="oedem">Oedem</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reflek" class="col-sm-2 control-label">Reflek</label>
+                            <div class="col-sm-2">
+                                <select name="reflek" class="form-control" id="reflek">
+                                    <option value="tidak ada">Tidak ada</option>
+                                    <option value="ada">Ada</option>
+
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="{$config->site_url('dataibu/riwayatkehamilan/')}"><i class="fa fa-long-arrow-left"></i>&nbsp; Batal</a>
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

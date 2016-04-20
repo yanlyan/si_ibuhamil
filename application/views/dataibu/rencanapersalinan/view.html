@@ -1,0 +1,138 @@
+<section class="content-header">
+    <h1>
+        Data Rencana Persalinan
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Dataibu</a></li>
+        <li><a href="#">Rencana Persalinan</a></li>
+        <!-- <li class="active">Tambah Data</li> -->
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">List Data Rencana Persalinan</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="{$config->site_url('dataibu/rencanapersalinan/edit_process')}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="no_rm" class="col-sm-2 control-label">No. RM.</label>
+                            <div class="col-sm-2">
+                                {$result.id_rencanapersalinan|default:''}
+                                <!--<input type="text" name="no_rm" class="form-control" id="no_rm" value="{$result.id_rencanapersalinan|default:''}" disabled="disabled">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pasien" class="col-sm-2 control-label">Nama Pasien</label>
+                            <div class="col-sm-2">
+                                <select name="pasien" class="form-control" id="pasien">
+                                    {foreach $rs_pasien as $pasien}
+                                    <option value="{$pasien.id_pasien}" {if $pasien.id_pasien == $result.id_pasien}selected{/if}>{$pasien.pasien_nm}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="golongan_darah" class="col-sm-2 control-label"> Golongan Darah </label>
+                            <div class="col-sm-2">
+                                {$result.golongan_darah|default:''}
+                                <!--<input type="text" name="golongan_darah" class="form-control" id="golongan_darah" value="{$result.golongan_darah|default:''}">
+                            </div>-->
+                        </div>
+                        <div class="form-group">
+                            <label for="penolong" class="col-sm-2 control-label"> Penolong </label>
+                            <div class="col-sm-2">
+                                {$result.penolong|default:''}
+                                <!--<input type="text" name="penolong" class="form-control" id="penolong" value="{$result.penolong|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tempat" class="col-sm-2 control-label"> Tempat </label>
+                            <div class="col-sm-2">
+                                {$result.tempat|default:''}
+                                <!--<input type="text" name="tempat" class="form-control" id="tempat" value="{$result.tempat|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pendamping" class="col-sm-2 control-label"> Pendamping </label>
+                            <div class="col-sm-2">
+                                {$result.pendamping|default:''}
+                                <!--<input type="text" name="pendamping" class="form-control" id="pendamping" value="{$result.pendamping|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="calon_donor" class="col-sm-2 control-label"> Calon Pendonor </label>
+                            <div class="col-sm-2">
+                                {$result.calon_donor|default:''}
+                                <!--<input type="text" name="calon_donor" class="form-control" id="calon_donor" value="{$result.calon_donor|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="diagnosa_medis" class="col-sm-2 control-label"> Diagnosa Medis </label>
+                            <div class="col-sm-2">
+                                {$result.diagnosa_medis|default:''}
+                                <!--<input type="text" name="diagnosa_medis" class="form-control" id="diagnosa_medis" value="{$result.diagnosa_medis|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="leokimia" class="col-sm-2 control-label"> Leokimia </label>
+                            <div class="col-sm-2">
+                                {$result.leokimia|default:''}
+                                <!--<input type="text" name="leokimia" class="form-control" id="leokimia" value="{$result.leokimia|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="klinik_fisik" class="col-sm-2 control-label"> Klinik Fisik </label>
+                            <div class="col-sm-2">
+                                {$result.klinik_fisik|default:''}
+                                <!--<input type="text" name="klinik_fisik" class="form-control" id="klinik_fisik" value="{$result.klinik_fisik|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="riwayat_gizi" class="col-sm-2 control-label"> Riwayat Gizi </label>
+                            <div class="col-sm-2">
+                                {$result.riwayat_gizi|default:''}
+                                <!--<input type="text" name="riwayat_gizi" class="form-control" id="riwayat_gizi" value="{$result.riwayat_gizi|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pola_makan" class="col-sm-2 control-label"> Pola Makan </label>
+                            <div class="col-sm-2">
+                                {$result.pola_makan|default:''}
+                                <!--<input type="text" name="pola_makan" class="form-control" id="pola_makan" value="{$result.pola_makan|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="asupan_gizi" class="col-sm-2 control-label"> Asupan Gizi </label>
+                            <div class="col-sm-2">
+                                {$result.asupan_gizi|default:''}
+                                <!--<input type="text" name="asupan_gizi" class="form-control" id="asupan_gizi" value="{$result.asupan_gizi|default:''}">-->
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="intervensi_gizi" class="col-sm-2 control-label"> Intervensi Gizi </label>
+                            <div class="col-sm-2">
+                                {$result.intervensi_gizi|default:''}
+                                <!--<input type="text" name="intervensi_gizi" class="form-control" id="intervensi_gizi" value="{$result.intervensi_gizi|default:''}">-->
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="{$config->site_url('dataibu/rencanapersalinan/')}"><i class="fa fa-long-arrow-left"></i>&nbsp; Batal</a>
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                        <input type="hidden" name="id_rencanapersalinan" value="{$result.id_rencanapersalinan|default:'0'}">
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

@@ -4,12 +4,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 // load base class if needed
 require_once( APPPATH . 'controllers/base/OperatorBase.php' );
 
-class Rekapmedik extends ApplicationBase{
+class Riwayatkehamilan extends ApplicationBase{
 
     public function __construct(){
         parent::__construct();
         // load models
-        $this->load->model('master/m_rekapmedik');
+        $this->load->model('dataibu/m_riwayatkehamilan');
 
         $this->load->library('pagination');
         $this->load->library('tnotification');
@@ -19,17 +19,17 @@ class Rekapmedik extends ApplicationBase{
         // set page rules
         $this->_set_page_rule("R");
         // set template content
-        $this->smarty->assign("template_content", "master/rekapmedik/list.html");
+        $this->smarty->assign("template_content", "dataibu/riwayatkehamilan/list.html");
         // session
-        $search = $this->tsession->userdata('search_rekapmedik');
+        $search = $this->tsession->userdata('search_riwayatkehamilan');
         $this->smarty->assign('search', $search);
         // parameter
-        $rekapmedik_nm = !empty($search['rekapmedik_nm']) ? "%" . $search['rekapmedik_nm'] . "%" : "%";
-        $params_search = array($rekapmedik_nm);
+        $pasien_nm = !empty($search['pasien_nm']) ? "%" . $search['pasien_nm'] . "%" : "%";
+        $params_search = array($pasien_nm);
 
         // pagination
-        $config['base_url'] = site_url("master/rekapmedik/index/");
-        $config['total_rows'] = $this->m_rekapmedik->get_total_rekapmedik($params_search);
+        $config['base_url'] = site_url("dataibu/riwayatkehamilan/index/");
+        $config['total_rows'] = $this->m_riwayatkehamilan->get_total_riwayatkehamilan($params_search);
 
         $config['uri_segment'] = 4;
         $config['per_page'] = 10;
@@ -49,9 +49,9 @@ class Rekapmedik extends ApplicationBase{
         $this->smarty->assign("no", $start);
 
         // /* end of pagination ---------------------- */
-        $params = array($rekapmedik_nm, ($start - 1), $config['per_page']);
+        $params = array($pasien_nm, ($start - 1), $config['per_page']);
         // get data
-        $this->smarty->assign("rs_id", $this->m_rekapmedik->get_list_rekapmedik($params));
+        $this->smarty->assign("rs_id", $this->m_riwayatkehamilan->get_list_riwayatkehamilan($params));
         // notification
         $this->tnotification->display_notification();
         $this->tnotification->display_last_field();
@@ -65,19 +65,19 @@ class Rekapmedik extends ApplicationBase{
         //--
         if ($this->input->post('save') == 'Cari') {
             $params = array(
-                "rekapmedik_nm" => $this->input->post('rekapmedik_nm'),
+                "pasien_nm" => $this->input->post('pasien_nm'),
             );
             // set
-            $this->tsession->set_userdata('search_rekapmedik', $params);
+            $this->tsession->set_userdata('search_riwayatkehamilan', $params);
         } else {
             // unset
-            $this->tsession->unset_userdata('search_rekapmedik');
+            $this->tsession->unset_userdata('search_riwayatkehamilan');
         }
         //--
-        redirect('master/rekapmedik');
+        redirect('dataibu/riwayatkehamilan');
     }
 
-    function view($id_rekapmedik){
+    function view($id_riwayatkehamilan){
         $this->load->model('master/m_pasien');
 
         // set page rules
@@ -90,13 +90,13 @@ class Rekapmedik extends ApplicationBase{
         $this->smarty->load_style('summernote/summernote.css');
         $this->smarty->load_style('datetimepicker/bootstrap-datetimepicker.css');
         // set template content
-        $this->smarty->assign("template_content", "master/rekapmedik/view.html");
+        $this->smarty->assign("template_content", "dataibu/riwayatkehamilan/view.html");
         // params
         $params = array("%", 0, 10000000000000);
         // get data pasien
         $this->smarty->assign("rs_pasien", $this->m_pasien->get_list_pasien($params));
         // get data
-        $result = $this->m_rekapmedik->get_rekapmedik_by_id($id_rekapmedik);
+        $result = $this->m_riwayatkehamilan->get_riwayatkehamilan_by_id($id_riwayatkehamilan);
         // assign variable
         $this->smarty->assign('result',$result);
         // notification
@@ -118,7 +118,7 @@ class Rekapmedik extends ApplicationBase{
         $this->smarty->load_style('summernote/summernote.css');
         $this->smarty->load_style('datetimepicker/bootstrap-datetimepicker.css');
         // set template content
-        $this->smarty->assign("template_content", "master/rekapmedik/add.html");
+        $this->smarty->assign("template_content", "dataibu/riwayatkehamilan/add.html");
 
         // params
         $params = array("%", 0, 10000000000000);
@@ -131,44 +131,50 @@ class Rekapmedik extends ApplicationBase{
         parent::display();
     }
 
+
     function add_process(){
         // set page rules
         $this->_set_page_rule("C");
         $this->tnotification->set_rules('pasien', 'Pasien', 'trim|required');
-        $this->tnotification->set_rules('anamnese[s]', 'Anamnese S', 'trim|required');
-        $this->tnotification->set_rules('anamnese[o]', 'Anamnese O', 'trim|required');
-        $this->tnotification->set_rules('anamnese[a]', 'Anamnese A', 'trim|required');
-        $this->tnotification->set_rules('anamnese[p]', 'Anamnese P', 'trim|required');
-        $this->tnotification->set_rules('hb', 'HB', 'trim|required');
-        $this->tnotification->set_rules('golongan_darah', 'Golongan Darah', 'trim|required');
-        $this->tnotification->set_rules('glukosa_darah', 'Glukosa Darah', 'trim|required');
-        $this->tnotification->set_rules('diagnosis', 'Diagnosis', 'trim|required');
-        $this->tnotification->set_rules('icd', 'ICD', 'trim');
-        $this->tnotification->set_rules('tindakan', 'Terapi / Tindakan', 'trim|required');
-        $this->tnotification->set_rules('tgl_periksa', 'Tanggal Periksa', 'trim|required');
+        $this->tnotification->set_rules('hamil_ke', 'Hamil Ke', 'trim|required');
 
         if ($this->tnotification->run() !== FALSE) {
             $session = $this->tsession->userdata('session_operator');
-            $anamnese = array(
-                "S" => $this->input->post('anamnese[s]'),
-                "O" => $this->input->post('anamnese[o]'),
-                "A" => $this->input->post('anamnese[a]'),
-                "P" => $this->input->post('anamnese[p]'),
-            );
             $params_insert = array(
                 'id_pasien' => $this->input->post('pasien'),
                 'id_user' => $session['user_id'],
-                'tgl_periksa' => $this->input->post('tgl_periksa'),
-                'anamnese_pxfisik' => json_encode($anamnese),
-                'hb' => $this->input->post('hb'),
-                'golongan_darah' => $this->input->post('golongan_darah'),
-                'glukosa_darah' => $this->input->post('glukosa_darah'),
-                'diagnosis' => $this->input->post('diagnosis'),
-                'icd' => $this->input->post('icd'),
-                'terapi_tindakan' => $this->input->post('tindakan')
+                'hamil_ke' => $this->input->post('hamil_ke'),
+                'haid' => $this->input->post('haid'),
+                'bb_sebelum' => $this->input->post('bb_sebelum'),
+                'mual_muntah' => $this->input->post('mual_muntah'),
+                'pusing' => $this->input->post('pusing'),
+                'nyeri_perut' => $this->input->post('nyeri_perut'),
+                'gerak_janin' => $this->input->post('gerak_janin'),
+                'nafsu_makan' => $this->input->post('nafsu_makan'),
+                'pendarahan' => $this->input->post('pendarahan'),
+                'penyakit_diderita' => $this->input->post('penyakit_diderita'),
+                'kebiasaan' => $this->input->post('kebiasaan'),
+                'status_tt' => $this->input->post('status_tt'),
+                'hiv' => $this->input->post('hiv'),
+                'tinggi_badan' => $this->input->post('tinggi_badan'),
+                'lila' => $this->input->post('lila'),
+                'bentuk_tubuh' => $this->input->post('bentuk_tubuh'),
+                'kesadaran' => $this->input->post('kesadaran'),
+                'muka' => $this->input->post('muka'),
+                'kulit' => $this->input->post('kulit'),
+                'mata' => $this->input->post('mata'),
+                'mulut' => $this->input->post('mulut'),
+                'gigi' => $this->input->post('gigi'),
+                'pembesaran_kelenjar' => $this->input->post('pembesaran_kelenjar'),
+                'dada' => $this->input->post('dada'),
+                'paru_nafas' => $this->input->post('paru_nafas'),
+                'jantung' => $this->input->post('jantung'),
+                'payudara' => $this->input->post('payudara'),
+                'tangan_tungkai' => $this->input->post('tangan_tungkai'),
+                'reflek' => $this->input->post('reflek')
             );
 
-            if ($this->m_rekapmedik->insert_rekapmedik($params_insert)) {
+            if ($this->m_riwayatkehamilan->insert_riwayatkehamilan($params_insert)) {
                 // notification
                 $this->tnotification->delete_last_field();
                 $this->tnotification->sent_notification("success", "Data berhasil disimpan");
@@ -180,10 +186,10 @@ class Rekapmedik extends ApplicationBase{
             // default error
             $this->tnotification->sent_notification("error", "Data gagal disimpan, waktu validasi");
         }
-        redirect('master/rekapmedik/add');
+        redirect('dataibu/riwayatkehamilan/add');
     }
 
-    function edit($id_rekapmedik){
+    function edit($id_riwayatkehamilan){
         $this->load->model('master/m_pasien');
 
         // set page rules
@@ -196,13 +202,13 @@ class Rekapmedik extends ApplicationBase{
         $this->smarty->load_style('summernote/summernote.css');
         $this->smarty->load_style('datetimepicker/bootstrap-datetimepicker.css');
         // set template content
-        $this->smarty->assign("template_content", "master/rekapmedik/edit.html");
+        $this->smarty->assign("template_content", "dataibu/riwayatkehamilan/edit.html");
         // params
         $params = array("%", 0, 10000000000000);
         // get data pasien
         $this->smarty->assign("rs_pasien", $this->m_pasien->get_list_pasien($params));
         // get data
-        $result = $this->m_rekapmedik->get_rekapmedik_by_id($id_rekapmedik);
+        $result = $this->m_riwayatkehamilan->get_riwayatkehamilan_by_id($id_riwayatkehamilan);
         // assign variable
         $this->smarty->assign('result',$result);
         // notification
@@ -217,41 +223,48 @@ class Rekapmedik extends ApplicationBase{
         $this->_set_page_rule("U");
         // input validation
         $this->tnotification->set_rules('pasien', 'Pasien', 'trim|required');
-        $this->tnotification->set_rules('anamnese[s]', 'Anamnese S', 'trim|required');
-        $this->tnotification->set_rules('anamnese[o]', 'Anamnese O', 'trim|required');
-        $this->tnotification->set_rules('anamnese[a]', 'Anamnese A', 'trim|required');
-        $this->tnotification->set_rules('anamnese[p]', 'Anamnese P', 'trim|required');
-        $this->tnotification->set_rules('hb', 'Hb', 'trim|required');
-        $this->tnotification->set_rules('golongan_darah', 'golongan_darah', 'trim|required');
-        $this->tnotification->set_rules('glukosa_darah', 'glukosa_darah', 'trim|required');
-        $this->tnotification->set_rules('diagnosis', 'Diagnosis', 'trim|required');
-        $this->tnotification->set_rules('icd', 'ICD', 'trim');
-        $this->tnotification->set_rules('tindakan', 'Terapi / Tindakan', 'trim|required');
-        $this->tnotification->set_rules('tgl_periksa', 'Tanggal Periksa', 'trim|required');
+        $this->tnotification->set_rules('hamil_ke', 'Hamil Ke', 'trim|required');
 
         if ($this->tnotification->run() !== FALSE) {
-
-            $anamnese = array(
-                "S" => $this->input->post('anamnese[s]'),
-                "O" => $this->input->post('anamnese[o]'),
-                "A" => $this->input->post('anamnese[a]'),
-                "P" => $this->input->post('anamnese[p]'),
-            );
             $params_update = array(
                 'id_pasien' => $this->input->post('pasien'),
-                // 'id_user' => $session['user_id'],
-                'tgl_periksa' => $this->input->post('tgl_periksa'),
-                'anamnese_pxfisik' => json_encode($anamnese),
-                'diagnosis' => $this->input->post('diagnosis'),
-                'icd' => $this->input->post('icd'),
-                'terapi_tindakan' => $this->input->post('tindakan')
+                'id_user' => $session['user_id'],
+                'hamil_ke' => $this->input->post('hamil_ke'),
+                'haid' => $this->input->post('haid'),
+                'bb_sebelum' => $this->input->post('bb_sebelum'),
+                'mual_muntah' => $this->input->post('mual_muntah'),
+                'pusing' => $this->input->post('pusing'),
+                'nyeri_perut' => $this->input->post('nyeri_perut'),
+                'gerak_janin' => $this->input->post('gerak_janin'),
+                'nafsu_makan' => $this->input->post('nafsu_makan'),
+                'pendarahan' => $this->input->post('pendarahan'),
+                'penyakit_diderita' => $this->input->post('penyakit_diderita'),
+                'kebiasaan' => $this->input->post('kebiasaan'),
+                'status_tt' => $this->input->post('status_tt'),
+                'hiv' => $this->input->post('hiv'),
+                'tinggi_badan' => $this->input->post('tinggi_badan'),
+                'lila' => $this->input->post('lila'),
+                'bentuk_tubuh' => $this->input->post('bentuk_tubuh'),
+                'kesadaran' => $this->input->post('kesadaran'),
+                'muka' => $this->input->post('muka'),
+                'kulit' => $this->input->post('kulit'),
+                'mata' => $this->input->post('mata'),
+                'mulut' => $this->input->post('mulut'),
+                'gigi' => $this->input->post('gigi'),
+                'pembesaran_kelenjar' => $this->input->post('pembesaran_kelenjar'),
+                'dada' => $this->input->post('dada'),
+                'paru_nafas' => $this->input->post('paru_nafas'),
+                'jantung' => $this->input->post('jantung'),
+                'payudara' => $this->input->post('payudara'),
+                'tangan_tungkai' => $this->input->post('tangan_tungkai'),
+                'reflek' => $this->input->post('reflek')
             );
 
             $where = array(
-                'id_rekapmedik' => $this->input->post('id_rekapmedik')
+                'id_riwayatkehamilan' => $this->input->post('id_riwayatkehamilan')
             );
 
-            if ($this->m_rekapmedik->update_rekapmedik($params_update, $where)) {
+            if ($this->m_riwayatkehamilan->update_riwayatkehamilan($params_update, $where)) {
                 // notification
                 $this->tnotification->delete_last_field();
                 $this->tnotification->sent_notification("success", "Data berhasil disimpan");
@@ -263,12 +276,12 @@ class Rekapmedik extends ApplicationBase{
             // default error
             $this->tnotification->sent_notification("error", "Data gagal disimpan");
         }
-        redirect('master/rekapmedik/edit/'.$this->input->post('id_rekapmedik'));
+        redirect('dataibu/riwayatkehamilan/edit/'.$this->input->post('id_riwayatkehamilan'));
     }
 
-    function delete($id_rekapmedik){
+    function delete($id_riwayatkehamilan){
         $this->_set_page_rule("D");
-        if ($this->m_rekapmedik->delete_rekapmedik($id_rekapmedik)) {
+        if ($this->m_riwayatkehamilan->delete_riwayatkehamilan($id_riwayatkehamilan)) {
             // notification
             $this->tnotification->delete_last_field();
             $this->tnotification->sent_notification("success", "Data berhasil dihapus");
@@ -276,7 +289,7 @@ class Rekapmedik extends ApplicationBase{
             // default error
             $this->tnotification->sent_notification("error", "Data gagal dihapus");
         }
-        redirect('master/rekapmedik');
+        redirect('dataibu/riwayatkehamilan');
     }
 
 }

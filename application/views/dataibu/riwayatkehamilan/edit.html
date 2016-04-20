@@ -1,0 +1,324 @@
+<section class="content-header">
+    <h1>
+        Data Riwayat Kehamilan
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-database"></i> Data Ibu</a></li>
+        <li><a href="#">Riwayat Kehamilan</a></li>
+        <li class="active">Tambah Data</li>
+    </ol>
+</section>
+<section class="content">
+    <div class="row">
+        <div class="col-md-12">
+            <!-- notification template -->
+            {include file="base/templates/notification.html"}
+            <!-- end of notification template-->
+            <div class="box box-info">
+                <div class="box-header with-border">
+                    <h3 class="box-title">Tambah Data Riwayat Kehamilan</h3>
+                </div>
+                <!-- /.box-header -->
+                <!-- form start -->
+                <form action="{$config->site_url('dataibu/riwayatkehamilan/edit_process')}" method="post" class="form-horizontal">
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="pasien" class="col-sm-2 control-label">Pasien</label>
+                            <div class="col-sm-2">
+                                <select name="pasien" class="form-control" id="pasien">
+                                    {foreach $rs_pasien as $pasien}
+                                    <option value="{$pasien.id_pasien}" {if $pasien.id_pasien == $result.id_pasien}selected{/if}>{$pasien.pasien_nm}</option>
+                                    {/foreach}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="hamil_ke" class="col-sm-2 control-label">Hamil Ke-</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="hamil_ke" class="form-control" id="hamil_ke" value="{$result.hamil_ke|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="haid" class="col-sm-2 control-label">Haid</label>
+                            <div class="col-sm-2">
+                                <select name="haid" class="form-control" id="haid">
+                                    <option value="teratur" {if $result.haid == 'teratur'}selected{/if}>Teratur</option>
+                                    <option value="tidak" {if $result.haid == 'tidak'}selected{/if}>Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="bb-sebelum" class="col-sm-2 control-label">BB Sebelum Hamil</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="bb-sebelum" id="bb-sebelum" class="form-control" value="{$result.bb_sebelum|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mual_muntah" class="col-sm-2 control-label">Mual/Muntah</label>
+                            <div class="col-sm-2">
+                                <select name="mual_muntah" class="form-control" id="mual_muntah">
+                                    <option value="tidak" {if $result.mual_muntah == 'tidak'}selected{/if}>Tidak</option>
+                                    <option value="kadang" {if $result.mual_muntah == 'kadang'}selected{/if}>Kadang</option>
+                                    <option value="terus-menerus" {if $result.mual_muntah == 'terus-menerus'}selected{/if}>Terus Menerus</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pusing" class="col-sm-2 control-label">Pusing</label>
+                            <div class="col-sm-2">
+                                <select name="pusing" class="form-control" id="pusing">
+                                    <option value="tidak" {if $result.pusing == 'tidak'}selected{/if}>Tidak</option>
+                                    <option value="kadang" {if $result.pusing == 'kadang'}selected{/if}>Kadang</option>
+                                    <option value="terus-menerus" {if $result.pusing == 'terus-menerus'}selected{/if}>Terus Menerus</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nyeri_perut" class="col-sm-2 control-label">Nyeri Perut</label>
+                            <div class="col-sm-2">
+                                <select name="nyeri_perut" class="form-control" id="nyeri_perut">
+                                    <option value="ada" {if $result.nyeri_perut == 'ada'}selected{/if}>Ada</option>
+                                    <option value="tidak" {if $result.nyeri_perut == 'tidak'}selected{/if}>Tidak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gerak_janin" class="col-sm-2 control-label">Gerakan Janin</label>
+                            <div class="col-sm-2">
+                                <select name="gerak_janin" class="form-control" id="gerakan_janin">
+                                    <option value="aktif" {if $result.gerak_janin == 'aktif'}selected{/if}>Aktif</option>
+                                    <option value="jarang" {if $result.gerak_janin == 'jarang'}selected{/if}>Jarang</option>
+                                    <option value="tidak ada" {if $result.gerak_janin == 'tidak ada'}selected{/if}>Tidak Ada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="nafsu_makan" class="col-sm-2 control-label">Nafsu Makan</label>
+                            <div class="col-sm-2">
+                                <select name="nafsu_makan" class="form-control" id="nafsu_makan">
+                                    <option value="baik" {if $result.nafsu_makan == 'baik'}selected{/if}>Baik</option>
+                                    <option value="menurun" {if $result.nafsu_makan == 'menurun'}selected{/if}>Menurun</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pendarahan" class="col-sm-2 control-label">Pendarahan</label>
+                            <div class="col-sm-2">
+                                <select name="pendarahan" class="form-control" id="pendarahan">
+                                    <option value="tidak ada" {if $result.pendarahan == 'tidak ada'}selected{/if}>Tidak Ada</option>
+                                    <option value="ada" {if $result.pendarahan == 'ada'}selected{/if}>Ada</option>
+
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="penyakit_diderita" class="col-sm-2 control-label">penyakit Diderita</label>
+                            <div class="col-sm-2">
+                                <select name="penyakit_diderita" class="form-control" id="penyakit_diderita">
+                                    <option value="paru" {if $result.penyakit_diderita == 'paru'}selected{/if}>paru</option>
+                                    <option value="dm" {if $result.penyakit_diderita == 'dm'}selected{/if}>Dm</option>
+                                    <option value="epilepsi" {if $result.penyakit_diderita == 'epilepsi'}selected{/if}>epilepsi</option>
+                                    <option value="hati" {if $result.penyakit_diderita == 'hati'}selected{/if}>Hati</option>
+                                    <option value="psikosis" {if $result.penyakit_diderita == 'psikosis'}selected{/if}>Psikosis</option>
+                                    <option value="ginjal" {if $result.penyakit_diderita == 'ginjal'}selected{/if}>ginjal</option>
+                                    <option value="malaria" {if $result.penyakit_diderita == 'malaria'}selected{/if}>malaria</option>
+                                    <option value="jantung" {if $result.penyakit_diderita == 'jantung'}selected{/if}>jantung</option>
+                                    <option value="hipertensi" {if $result.penyakit_diderita == 'hipertensi'}selected{/if}>hipertensi</option>
+                                    <option value="asthma" {if $result.penyakit_diderita == 'asthma'}selected{/if}>asthma</option>
+                                    <option value="diare lama" {if $result.penyakit_diderita == 'diare lama'}selected{/if}>Diare lama</option>
+                                    <option value="pms" {if $result.penyakit_diderita == 'pms'}selected{/if}>pms</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="kebiasaan" class="col-sm-2 control-label">Kebiasaan</label>
+                            <div class="col-sm-2">
+                                <select name="kebiasaan" class="form-control" id="kebiasaan">
+                                    <option value="merokok" {if $result.kebiasaan == 'merokok'}selected{/if}>Merokok</option>
+                                    <option value="minuman keras" {if $result.kebiasaan == 'minuman keras'}selected{/if}>Minuman Keras</option>
+                                    <option value="narkotika" {if $result.kebiasaan == 'narkotika'}selected{/if}>Terus Menerus</option>
+                                    <option value="minum jamu" {if $result.kebiasaan == 'minum jamu'}selected{/if}>minum jamu</option>
+                                    <option value="pijat perut" {if $result.kebiasaan == 'pijat perut'}selected{/if}>pijat perut</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="status_tt" class="col-sm-2 control-label">Status TT</label>
+                            <div class="col-sm-2">
+                                <select name="status_tt" class="form-control" id="status_TT">
+                                    <option value="T0" {if $result.status_tt == 'T0'}selected{/if}>T0</option>
+                                    <option value="T1" {if $result.status_tt == 'T1'}selected{/if}>T1</option>
+                                    <option value="T2" {if $result.status_tt == 'T2'}selected{/if}>T2</option>
+                                    <option value="T3" {if $result.status_tt == 'T3'}selected{/if}>T3</option>
+                                    <option value="T4" {if $result.status_tt == 'T4'}selected{/if}>T4</option>
+                                    <option value="T5" {if $result.status_tt == 'T5'}selected{/if}>T5</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="hiv" class="col-sm-2 control-label">Penyakit HIV</label>
+                            <div class="col-sm-2">
+                                <select name="hiv" class="form-control" id="hiv">
+                                    <option value="ada" {if $result.hiv == 'ada'}selected{/if}>Ada</option>
+                                    <option value="tidak ada" {if $result.hiv == 'tidak ada'}selected{/if}>Tidak Ada</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tinggi_badan" class="col-sm-2 control-label">Tinggi badan ibu hamil</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="tinggi_badan" id="tinggi_badan" class="form-control" value="{$result.tinggi_badan|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="lila" class="col-sm-2 control-label">LiLa</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="lila" id="lila" class="form-control" value="{$result.lila|default:''}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="kesadaran" class="col-sm-2 control-label">Kesadaran</label>
+                            <div class="col-sm-2">
+                                <select name="kesadaran" class="form-control" id="kesadaran">
+                                    <option value="baik" {if $result.kesadaran == 'baik'}selected{/if}>Baik</option>
+                                    <option value="ada gangguan" {if $result.kesadaran == 'ada gangguan'}selected{/if}>Ada Gangguan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="muka" class="col-sm-2 control-label">Muka</label>
+                            <div class="col-sm-2">
+                                <select name="muka" class="form-control" id="muka">
+                                    <option value="pucat" {if $result.muka == 'pucat'}selected{/if}>Pucat</option>
+                                    <option value="kuning" {if $result.muka == 'kuning'}selected{/if}>Kuning</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="kulit" class="col-sm-2 control-label">Kulit</label>
+                            <div class="col-sm-2">
+                                <select name="kulit" class="form-control" id="kulit">
+                                    <option value="ruam kulit" {if $result.kulit == 'ruam kulit'}selected{/if}>Ruam Kulit</option>
+                                    <option value="herpes" {if $result.kulit == 'herpes'}selected{/if}>Herpes</option>
+                                    <option value="sarcoma" {if $result.kulit == 'sarcoma'}selected{/if}>Sarcoma</option>
+                                    <option value="tatto" {if $result.kulit == 'tatto'}selected{/if}>Tatto</option>
+                                    <option value="bekas luka" {if $result.kulit == 'bekas luka'}selected{/if}>Bekas Luka</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mata" class="col-sm-2 control-label">Mata</label>
+                            <div class="col-sm-2">
+                                <select name="mata" class="form-control" id="mata">
+                                    <option value="normal" {if $result.mata == 'normal'}selected{/if}>Normal</option>
+                                    <option value="oedem palpebra" {if $result.mata == 'oedem palpebra'}selected{/if}>Oedem palpebra</option>
+                                    <option value="conjungtiva pucat" {if $result.mata == 'conjungtiva pucat'}selected{/if}>Conjungtiva pucat</option>
+                                    <option value="icterus" {if $result.mata == 'icterus'}selected{/if}>Icterus</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="mulut" class="col-sm-2 control-label">Mulut</label>
+                            <div class="col-sm-2">
+                                <select name="mulut" class="form-control" id="mulut">
+                                    <option value="normal" {if $result.mulut == 'normal'}selected{/if}>Normal</option>
+                                    <option value="cynosis" {if $result.mulut == 'cynosis'}selected{/if}>Cynosis</option>
+                                    <option value="stomatitis" {if $result.mulut == 'stomatitis'}selected{/if}>Stomatitis</option>
+                                    <option value="tonsillitis" {if $result.mulut == 'tonsillitis'}selected{/if}>Tonsillitis</option>
+                                    <option value="faringitis" {if $result.mulut == 'faringitis'}selected{/if}>Faringitis</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="gigi" class="col-sm-2 control-label">Gigi</label>
+                            <div class="col-sm-2">
+                                <select name="gigi" class="form-control" id="gigi">
+                                    <option value="normal" {if $result.gigi == 'normal'}selected{/if}>Normal</option>
+                                    <option value="karies" {if $result.gigi == 'karies'}selected{/if}>Karies</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="pembesaran_kelenjar" class="col-sm-2 control-label">Pembesaran Kelenjar</label>
+                            <div class="col-sm-2">
+                                <select name="pembesaran_kelenjar" class="form-control" id="pembesaran_kelenjar">
+                                    <option value="normal" {if $result.pembesaran_kelenjar == 'normal'}selected{/if}>Normal</option>
+                                    <option value="ketiak" {if $result.pembesaran_kelenjar == 'ketiak'}selected{/if}>Ketiak</option>
+                                    <option value="lipatan paha" {if $result.pembesaran_kelenjar == 'lipatan paha'}selected{/if}>Lipatan Paha</option>
+                                    <option value="tiroid" {if $result.pembesaran_kelenjar == 'tiroid'}selected{/if}>Tiroid</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="dada" class="col-sm-2 control-label">Dada</label>
+                            <div class="col-sm-2">
+                                <select name="dada" class="form-control" id="dada">
+                                    <option value="normal" {if $result.dada == 'normal'}selected{/if}>Normal</option>
+                                    <option value="bentuk dada abnormal" {if $result.dada == 'bentuk dada abnormal'}selected{/if}>Bentuk Dada Abnormal</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="paru_nafas" class="col-sm-2 control-label">Paru/Nafas</label>
+                            <div class="col-sm-2">
+                                <select name="paru_nafas" class="form-control" id="paru_nafas">
+                                    <option value="normal" {if $result.paru_nafas == 'normal'}selected{/if}>Normal</option>
+                                    <option value="sesak" {if $result.paru_nafas == 'sesak'}selected{/if}>Sesak</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="jantung" class="col-sm-2 control-label">Jantung</label>
+                            <div class="col-sm-2">
+                                <select name="jantung" class="form-control" id="jantung">
+                                    <option value="tidak ada keluhan" {if $result.jantung == 'tidak ada keluhan'}selected{/if}>Tidak Ada Keluhan</option>
+                                    <option value="berdebar-debar" {if $result.jantung == 'berdebar-debar'}selected{/if}>Berdebar-debar</option>
+                                    <option value="mudah sesak napas" {if $result.jantung == 'mudah sesak napas'}selected{/if}>Mudah sesak napas</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="payudara" class="col-sm-2 control-label">Payudara</label>
+                            <div class="col-sm-2">
+                                <select name="payudara" class="form-control" id="payudara">
+                                    <option value="normal" {if $result.payudara == 'normal'}selected{/if}>Normal</option>
+                                    <option value="kemerahan" {if $result.payudara == 'kemerahan'}selected{/if}>Kemerahan</option>
+                                    <option value="benjolan" {if $result.payudara == 'benjolan'}selected{/if}>Benjolan</option>
+                                    <option value="puting susu masuk" {if $result.payudara == 'puting susu masuk'}selected{/if}>Putting Susu Masuk</option>
+                                    <option value="kulit jeruk" {if $result.payudara == 'kulit jeruk'}selected{/if}>Kulit Jeruk</option>
+                                    <option value="keluar cairan" {if $result.payudara == 'keluar cairan'}selected{/if}>Keluar Cairan</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="tangan_tungkai" class="col-sm-2 control-label">Tangan Tungkai</label>
+                            <div class="col-sm-2">
+                                <select name="tangan_tungkai" class="form-control" id="tangan_tungkai">
+                                    <option value="normal" {if $result.tangan_tungkai == 'normal'}selected{/if}>Normal</option>
+                                    <option value="oedem" {if $result.tangan_tungkai == 'oedem'}selected{/if}>Oedem</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reflek" class="col-sm-2 control-label">Reflek</label>
+                            <div class="col-sm-2">
+                                <select name="reflek" class="form-control" id="reflek">
+                                    <option value="tidak ada" {if $result.reflek == 'tidak ada'}selected{/if}>Tidak ada</option>
+                                    <option value="ada" {if $result.reflek == 'ada'}selected{/if}>Ada</option>
+                                </select>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- /.box-body -->
+                    <div class="box-footer">
+                        <a class="btn btn-default" href="{$config->site_url('dataibu/riwayatkehamilan/')}"><i class="fa fa-long-arrow-left"></i>&nbsp; Batal</a>
+                        <button type="submit" class="btn btn-info pull-right">Simpan</button>
+                        <input type="hidden" name="id_riwayatkehamilan" value="{$result.id_riwayatkehamilan|default:'0'}">
+                    </div>
+                    <!-- /.box-footer -->
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

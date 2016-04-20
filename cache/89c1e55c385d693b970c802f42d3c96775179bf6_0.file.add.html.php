@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.30-dev/44, created on 2016-04-11 11:27:36
+/* Smarty version 3.1.30-dev/44, created on 2016-04-19 06:46:41
   from "C:\xampp\htdocs\si_ibuhamil\application\views\master\rekapmedik\add.html" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.30-dev/44',
-  'unifunc' => 'content_570b6e08245654_84689321',
+  'unifunc' => 'content_5715b8316f3f49_31798680',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '89c1e55c385d693b970c802f42d3c96775179bf6' => 
     array (
       0 => 'C:\\xampp\\htdocs\\si_ibuhamil\\application\\views\\master\\rekapmedik\\add.html',
-      1 => 1460366851,
+      1 => 1461041195,
       2 => 'file',
     ),
   ),
@@ -21,7 +21,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
     'file:base/templates/notification.html' => 1,
   ),
 ),false)) {
-function content_570b6e08245654_84689321 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5715b8316f3f49_31798680 (Smarty_Internal_Template $_smarty_tpl) {
 if (!is_callable('smarty_modifier_date_format')) require_once 'C:\\xampp\\htdocs\\si_ibuhamil\\system\\plugins\\smarty\\libs\\plugins\\modifier.date_format.php';
 echo '<script'; ?>
  type="text/javascript">
@@ -96,6 +96,13 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="tgl_periksa" class="col-sm-2 control-label">Tanggal Periksa</label>
+                            <div class="col-sm-2">
+                                <input type="text" name="tgl_periksa" class="form-control" id="tgl_periksa" placeholder="Tanggal Periksa" value="<?php echo smarty_modifier_date_format((($tmp = @$_smarty_tpl->tpl_vars['result']->value['tgl_periksa'])===null||$tmp==='' ? '' : $tmp),'%y-%m-%d %H:%M');?>
+">
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="anamnese-s" class="col-sm-2 control-label">Anamnese / PX Fisik</label>
                             <div class="col-sm-5">
                                 <label class="control-label">S</label>
@@ -128,6 +135,27 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
                             </div>
                         </div>
                         <div class="form-group">
+                            <label for="hb" class="col-sm-2 control-label">HB</label>
+                            <div class="col-sm-5">
+                                <textarea name="hb" class="form-control" id="hb"><?php echo (($tmp = @$_smarty_tpl->tpl_vars['result']->value['hb'])===null||$tmp==='' ? '' : $tmp);?>
+</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="golongan_darah" class="col-sm-2 control-label">Golongan Darah</label>
+                            <div class="col-sm-5">
+                                <textarea name="golongan_darah" class="form-control" id="golongan_darah"><?php echo (($tmp = @$_smarty_tpl->tpl_vars['result']->value['golongan_darah'])===null||$tmp==='' ? '' : $tmp);?>
+</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="glukosa_darah" class="col-sm-2 control-label">Glukosa Darah</label>
+                            <div class="col-sm-5">
+                                <textarea name="glukosa_darah" class="form-control" id="glukosa_darah"><?php echo (($tmp = @$_smarty_tpl->tpl_vars['result']->value['glukosa_darah'])===null||$tmp==='' ? '' : $tmp);?>
+</textarea>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label for="diagnosis" class="col-sm-2 control-label">Diagnosis</label>
                             <div class="col-sm-5">
                                 <textarea name="diagnosis" class="form-control" id="diagnosis"><?php echo (($tmp = @$_smarty_tpl->tpl_vars['result']->value['diagnosis'])===null||$tmp==='' ? '' : $tmp);?>
@@ -148,13 +176,7 @@ $_smarty_tpl->smarty->ext->_foreach->restore($_smarty_tpl);
 </textarea>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label for="tgl_periksa" class="col-sm-2 control-label">Tanggal Periksa</label>
-                            <div class="col-sm-2">
-                                <input type="text" name="tgl_periksa" class="form-control" id="tgl_periksa" placeholder="Tanggal Periksa" value="<?php echo smarty_modifier_date_format((($tmp = @$_smarty_tpl->tpl_vars['result']->value['tgl_periksa'])===null||$tmp==='' ? '' : $tmp),'%y-%m-%d %H:%M');?>
-">
-                            </div>
-                        </div>
+
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer">
