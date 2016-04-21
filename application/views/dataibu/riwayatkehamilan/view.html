@@ -23,20 +23,9 @@
                 <form action="{$config->site_url('dataibu/riwayatkehamilan/edit_process')}" method="post" class="form-horizontal">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="no_rm" class="col-sm-2 control-label">No. RM.</label>
-                            <div class="col-sm-2">
-                                {$result.id_riwayatkehamilan|default:''}
-                                <!--<input type="text" name="no_rm" class="form-control" id="no_rm" value="{$result.id_riwayatkehamilan|default:''}" disabled="disabled">-->
-                            </div>
-                        </div>
-                        <div class="form-group">
                             <label for="pasien" class="col-sm-2 control-label">Nama Pasien</label>
                             <div class="col-sm-2">
-                                <select name="pasien" class="form-control" id="pasien">
-                                    {foreach $rs_pasien as $pasien}
-                                    <option value="{$pasien.id_pasien}" {if $pasien.id_pasien == $result.id_pasien}selected{/if}>{$pasien.pasien_nm}</option>
-                                    {/foreach}
-                                </select>
+                                {$result.pasien_nm}
                             </div>
                         </div>
                         <div class="form-group">
@@ -59,7 +48,7 @@
                         <div class="form-group">
                             <label for="bb-sebelum" class="col-sm-2 control-label">BB Sebelum Hamil</label>
                             <div class="col-sm-2">
-                                {$result.bb_sebelum|default:''}
+                                {$result.bb_sebelum|default:''} Kg
                                 <!--<input type="text" name="bb-sebelum" id="bb-sebelum" class="form-control" value="{$result.bb_sebelum|default:''}">-->
                             </div>
                         </div>
@@ -187,14 +176,14 @@
                         <div class="form-group">
                             <label for="tinggi_badan" class="col-sm-2 control-label">Tinggi badan ibu hamil</label>
                             <div class="col-sm-2">
-                                {$result.tinggi_badan|default:''}
+                                {$result.tinggi_badan|default:''} cm
                                 <!--<input type="text" name="tinggi_badan" id="tinggi_badan" class="form-control" value="{$result.tinggi_badan|default:''}">-->
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="lila" class="col-sm-2 control-label">LiLa</label>
                             <div class="col-sm-2">
-                                {$result.lila|default:''}
+                                {$result.lila|default:''} cm
                                 <!--<input type="text" name="lila" id="lila" class="form-control" value="{$result.lila|default:''}">-->
                             </div>
                         </div>

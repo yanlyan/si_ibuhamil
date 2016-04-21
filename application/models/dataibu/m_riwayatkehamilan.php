@@ -32,7 +32,9 @@ class m_riwayatkehamilan extends CI_Model{
     }
 
     function get_riwayatkehamilan_by_id($params){
-        $sql = "SELECT * FROM riwayat_kehamilan WHERE id_riwayatkehamilan = ?";
+        $sql = "SELECT * FROM riwayat_kehamilan "
+            ."INNER JOIN pasien ON riwayat_kehamilan.id_pasien=pasien.id_pasien "
+            ."WHERE id_riwayatkehamilan = ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();

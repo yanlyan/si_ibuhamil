@@ -77,7 +77,7 @@ class rencanapersalinan extends ApplicationBase{
         redirect('dataibu/rencanapersalinan');
     }
 
-    function view($id_rencanapersalinan){
+    function view($id_rencana){
             $this->load->model('master/m_pasien');
 
             // set page rules
@@ -96,7 +96,7 @@ class rencanapersalinan extends ApplicationBase{
             // get data pasien
             $this->smarty->assign("rs_pasien", $this->m_pasien->get_list_pasien($params));
             // get data
-            $result = $this->m_rencanapersalinan->get_rencanapersalinan_by_id($id_rencanapersalinan);
+            $result = $this->m_rencanapersalinan->get_rencanapersalinan_by_id($id_rencana);
             // assign variable
             $this->smarty->assign('result',$result);
             // notification
@@ -171,7 +171,7 @@ class rencanapersalinan extends ApplicationBase{
         redirect('dataibu/rencanapersalinan/add');
     }
 
-    function edit($id_rencanapersalinan){
+    function edit($id_rencana){
         $this->load->model('master/m_pasien');
 
         // set page rules
@@ -190,7 +190,7 @@ class rencanapersalinan extends ApplicationBase{
         // get data pasien
         $this->smarty->assign("rs_pasien", $this->m_pasien->get_list_pasien($params));
         // get data
-        $result = $this->m_rencanapersalinan->get_rencanapersalinan_by_id($id_rencanapersalinan);
+        $result = $this->m_rencanapersalinan->get_rencanapersalinan_by_id($id_rencana);
         // assign variable
         $this->smarty->assign('result',$result);
         // notification
@@ -226,7 +226,7 @@ class rencanapersalinan extends ApplicationBase{
             );
 
             $where = array(
-                'id_rencanapersalinan' => $this->input->post('id_rencanapersalinan')
+                'id_rencana' => $this->input->post('id_rencana')
             );
 
             if ($this->m_rencanapersalinan->update_rencanapersalinan($params_update, $where)) {
@@ -241,12 +241,12 @@ class rencanapersalinan extends ApplicationBase{
             // default error
             $this->tnotification->sent_notification("error", "Data gagal disimpan");
         }
-        redirect('dataibu/rencanapersalinan/edit/'.$this->input->post('id_rencanapersalinan'));
+        redirect('dataibu/rencanapersalinan/edit/'.$this->input->post('id_rencana'));
     }
 
-    function delete($id_rencanapersalinan){
+    function delete($id_rencana){
         $this->_set_page_rule("D");
-        if ($this->m_rencanapersalinan->delete_rencanapersalinan($id_rencanapersalinan)) {
+        if ($this->m_rencanapersalinan->delete_rencanapersalinan($id_rencana)) {
             // notification
             $this->tnotification->delete_last_field();
             $this->tnotification->sent_notification("success", "Data berhasil dihapus");

@@ -32,7 +32,9 @@ class m_rencanapersalinan extends CI_Model{
     }
 
     function get_rencanapersalinan_by_id($params){
-        $sql = "SELECT * FROM rencana_persalinan WHERE id_rencanapersalinan = ?";
+        $sql = "SELECT * FROM rencana_persalinan "
+            ."INNER JOIN pasien ON rencana_persalinan.id_pasien=pasien.id_pasien "
+            ."WHERE id_rencana = ?";
         $query = $this->db->query($sql, $params);
         if ($query->num_rows() > 0) {
             $result = $query->row_array();
@@ -52,7 +54,7 @@ class m_rencanapersalinan extends CI_Model{
     }
 
     function delete_rencanapersalinan($params){
-        $sql = "DELETE FROM rencana_persalinan WHERE id_rencanapersalinan = ?";
+        $sql = "DELETE FROM rencana_persalinan WHERE id_rencana = ?";
         return $this->db->query($sql, $params);
     }
 
